@@ -4,7 +4,7 @@ app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///database.db"
 
 with app.app_context():
-    from api.models import db, User
+    from api.models import *
     db.init_app(app)
     db.create_all()
 
