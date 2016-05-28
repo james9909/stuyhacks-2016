@@ -1,19 +1,35 @@
 {% extends "base.html" %}
 {% block head %}
-    <title>Register</title>
     {{ super() }}
+    <title>Login</title>
 {% endblock %}
+
 {% block body %}
-    {{ super() }}
     <div class="col-md-12" align="center">
-        <form action="/work" method="POST">
-            {% block form %}
+        <div id="login_msg"/></div>
+        <form id="login_form" onsubmit="login(); return false;">
             Email<br>
-            <input type="text" name="email"><br>
+            <input type="text" id="email" name="email" required><br>
             Password<br>
-            <input type="password" name="password"><br>
-            {% endblock %}
+            <input type="password" id="password" name="password" required><br>
             <input type="submit">
         </form>
     </div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+var login = function() {
+    var data = $("#login_form").serializeObject();
+    api_call("POST", "/api/users/login", data, function(result) {
+        if (result["success"] == 1) {
+            display_message("login_msg", "success", result["message"], function() {
+                location.href = "/";
+            });
+        } else {
+            display_message("login_msg", "danger", result["message"]);
+        }
+    })
+}
+</script>
 {% endblock %}

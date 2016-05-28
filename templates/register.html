@@ -1,6 +1,40 @@
-{% extends "login.html" %}
-{% block form %}
-    {{ super() }}
-    Confirm Password<br>
-    <input type="password" name="confirm_pass"><br>
+{% extends "base.html" %}
+
+{% block head %}
+{{ super() }}
+<title>Register</title>
+{% endblock %}
+
+{% block body %}
+<div class="col-md-12" align="center">
+    <div id="register_msg"/></div>
+    <form id="register_form" onsubmit="register(); return false;">
+        Name<br>
+        <input type="text" id="name" name="name" required><br>
+        Email<br>
+        <input type="text" id="email" name="email" required><br>
+        Password<br>
+        <input type="password" id="password" name="password" required><br>
+        Confirm Password<br>
+        <input type="password" id="confirm_password" name="confirm_password"><br>
+        <input type="submit">
+    </form>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+var register = function() {
+    var data = $("#register_form").serializeObject();
+    api_call("POST", "/api/users/register", data, function(result) {
+        if (result["success"] == 1) {
+            display_message("register_msg", "success", result["message"], function() {
+                location.href = "/login";
+            });
+        } else {
+            display_message("register_msg", "danger", result["message"]);
+        }
+    })
+}
+</script>
 {% endblock %}

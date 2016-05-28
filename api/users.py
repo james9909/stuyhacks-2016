@@ -14,11 +14,17 @@ def register():
     name = form.get("name")
     email = form.get("email")
     password = form.get("password")
+    confirm_password = form.get("confirm_password")
+
+    if password != confirm_password:
+        raise WebException("Passwords do not match.")
+
     if len(password) < 5:
         raise WebException("Passwords should be at least four characters long.")
 
     user = get_user(email=email).first()
     if user is not None:
+        print user.email
         raise WebException("Email already in use.")
 
     user = User(name, email, password)
