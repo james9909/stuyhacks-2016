@@ -30,10 +30,19 @@
             <li class="sidebar-brand">
                 <a href="#">Your Lists</a>
             </li>
-            <!-- YOU CAN CHANGE THIS PART -->
-            {% for list in list_of_lists %}
-            <li> <a href="#">{{ list }}</a> </li>
+             
+            <div> 
+            {% for task in tasks recursive %}
+                <br>
+                <div style="position: relative; left: 30px;">
+                    <!-- TODO: REPLACE <b> WITH THE TASK DIV -->
+                    <b> Task: {{ task["name"] }} </b> <br>
+                    {% if task["children"]|length != 0 %}
+                        {{ loop(task["children"]) }} </ul>
+                    {% endif %}
+                </div>
             {% endfor %}
+            </div>
         </ul>
     </div>
     <div id="page-content-wrapper">
