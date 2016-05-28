@@ -20,27 +20,13 @@
             <li class="sidebar-brand">
                 <a href="#">Your Lists</a>
             </li>
-<<<<<<< HEAD
+
             <ul class="nav nav-pills nav-stacked" id="projects">
                     <li class="active"><a href="#">Project 0</a></li>
                     <li><a href="#">Project 1</a></li>
                     <li><a href="#">Project 2</a></li>
                     <li><a href="#">Project 3</a></li>
             </ul>
-            <div>
-            {#{% for task in tasks recursive %}
-                <br>
-                <div style="position: relative; left: 30px;">
-                    <!-- TODO: REPLACE <b> WITH THE TASK DIV -->
-                      <b> Task: {{ task["name"] }} </b> <br>
-                    {% if task["children"]|length != 0 %}
-                        {{ loop(task["children"]) }} </ul>
-                    {% endif %}
-                </div>
-            {% endfor %} #}
-            </div>
-=======
->>>>>>> 64386383be4ea28594d0f85ed671409466706217
         </ul>
     </div>
     <div id="page-content-wrapper">
