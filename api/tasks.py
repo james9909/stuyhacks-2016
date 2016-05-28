@@ -7,7 +7,7 @@ blueprint = Blueprint("tasks", __name__)
 
 @blueprint.route("/add", methods=["POST"])
 @api_wrapper
-def add_task_request():
+def add_task():
     form = request.form
     title = form.get("title")
     parent = form.get("parent", -1)
@@ -21,7 +21,7 @@ def add_task_request():
 
 @blueprint.route("/remove", methods=["POST"])
 @api_wrapper
-def remove_task_request():
+def remove_task():
     form = request.form
     tid = form.get("tid")
     result = get_task(tid=tid)
@@ -35,7 +35,7 @@ def remove_task_request():
 
 @blueprint.route("/update", methods=["POST"])
 @api_wrapper
-def update_task_request():
+def update_task():
     form = request.form
     updates = {}
     tid = form.get("tid")
@@ -54,6 +54,7 @@ def update_task_request():
 
     return { "success": 1, "message": "Task updated." }
 
+
 def get_task(tid=None, parent=None, priority=None, completed=False):
     match = {}
     if tid is not None:
@@ -66,3 +67,6 @@ def get_task(tid=None, parent=None, priority=None, completed=False):
         match.update({"completed": completed})
 
     return Task.query.filter_by(**match)
+
+def get_all_tasks():
+    return Task.query.all()

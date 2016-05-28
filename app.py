@@ -45,6 +45,31 @@ def login():
 def work():
     return render_template("toDoTemplate.html", title= "wtf", logged_in=True)
 
+#@app.route("/test")
+#def test():
+#    childChild = {"name": "spoopy", "children": []}
+#    child1 = {"name": "tomatoC1", "children": []}
+#    child2 = {"name": "tomatoC2", "children": [childChild]}
+# 
+#    tempList = [
+#        {
+#            "name": "potato 1",
+#            "children": [
+#                child1,
+#                child2
+#                ]
+#        },
+#        {
+#            "name": "potato 2",
+#            "children": []
+#        }
+#    ]
+#    return render_template("tasks.html", tasks = tempList)
+#
+#@app.route("/tasks")
+#def tasks():
+    
+
 if __name__ == "__main__":
     app.debug = True
     app.run(host="0.0.0.0", port=5000)
