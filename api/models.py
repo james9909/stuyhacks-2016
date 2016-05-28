@@ -41,4 +41,4 @@ class Task(db.Model):
                     "parent": task.parent,
                     "completed": task.completed
                 })
-        return chilren
+        return children
