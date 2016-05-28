@@ -1,4 +1,4 @@
-from flask import Blueprint, request
+from flask import current_app as app, Blueprint, request
 
 from decorators import api_wrapper, WebException
 from models import db, Task
@@ -12,7 +12,7 @@ def add_task_request():
     title = form.get("title")
     parent = form.get("parent", -1)
     priority = form.get("priority", 0)
-    task = Tasks(title, priority=priority, parent=parent)
+    task = Task(title, priority=priority, parent=parent)
     with app.app_context():
         db.session.add(task)
         db.session.commit()
