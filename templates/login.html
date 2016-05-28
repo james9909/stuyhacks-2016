@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block head %}
+    <title>Register</title>
+    {{ super() }}
+{% endblock %}
+{% block body %}
+    {{ super() }}
+    <div class="col-md-12" align="center">
+        <form action="/work" method="POST">
+            {% block form %}
+            Email<br>
+            <input type="text" name="email"><br>
+            Password<br>
+            <input type="password" name="password"><br>
+            {% endblock %}
+            <input type="submit">
+        </form>
+    </div>
+{% endblock %}
