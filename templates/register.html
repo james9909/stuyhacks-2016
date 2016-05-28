@@ -6,19 +6,51 @@
 {% endblock %}
 
 {% block body %}
-<div class="col-md-12" align="center">
-    <div id="register_msg"/></div>
-    <form id="register_form" onsubmit="register(); return false;">
-        Name<br>
-        <input type="text" id="name" name="name" required><br>
-        Email<br>
-        <input type="text" id="email" name="email" required><br>
-        Password<br>
-        <input type="password" id="password" name="password" required><br>
-        Confirm Password<br>
-        <input type="password" id="confirm_password" name="confirm_password"><br>
-        <input type="submit">
-    </form>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div id="register_msg"/></div>
+                    <form class="form-horizontal" id="register_form" onsubmit="register(); return false;">
+                        <div class="row">
+                            <div class="col-sm-12 form-group">
+                                <label class="col-sm-12" for="name"><small>Name</small></label>
+                                <div class="col-sm-12">
+                                    <input class="form-control" type="text" required name="name" id="name" placeholder="Name" autocomplete="off" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 form-group">
+                                <label class="col-sm-12" for="email"><small>Email</small></label>
+                                <div class="col-sm-12">
+                                    <input class="form-control" type="text" required name="email" id="email" placeholder="Email" autocomplete="off" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 form-group">
+                                <label class="col-sm-12" for="password"><small>Password</small></label>
+                                <div class="col-sm-12">
+                                    <input class="form-control" type="password" required name="password" id="password" placeholder="Password" autocomplete="off" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 form-group">
+                                <label class="col-sm-12" for="confirm_password"><small>Confirm Password</small></label>
+                                <div class="col-sm-12">
+                                    <input class="form-control" type="password" required name="confirm_password" id="confirm_password" placeholder="Password" autocomplete="off" />
+                                </div>
+                            </div>
+                        </div>
+                        <input class="btn btn-primary" type="submit" value="Register">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}
 

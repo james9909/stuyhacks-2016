@@ -1,20 +1,40 @@
 {% extends "base.html" %}
 {% block head %}
-    {{ super() }}
-    <title>Login</title>
+{{ super() }}
+<title>Login</title>
 {% endblock %}
 
 {% block body %}
-    <div class="col-md-12" align="center">
-        <div id="login_msg"/></div>
-        <form id="login_form" onsubmit="login(); return false;">
-            Email<br>
-            <input type="text" id="email" name="email" required><br>
-            Password<br>
-            <input type="password" id="password" name="password" required><br>
-            <input type="submit">
-        </form>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div id="login_msg"/></div>
+                    <form class="form-horizontal" id="login_form" onsubmit="login(); return false;">
+                        <div class="row">
+                            <div class="col-sm-12 form-group">
+                                <label class="col-sm-12" for="email"><small>Email</small></label>
+                                <div class="col-sm-12">
+                                    <input class="form-control" type="text" required name="email" id="email" placeholder="Email" autocomplete="off" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 form-group">
+                                <label class="col-sm-12" for="password"><small>Password</small></label>
+                                <div class="col-sm-12">
+                                    <input class="form-control" type="password" required name="password" id="password" placeholder="Password" autocomplete="off" />
+                                </div>
+                            </div>
+                        </div>
+                        <input class="btn btn-primary" type="submit" value="Login">
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
+</div>
 {% endblock %}
 
 {% block scripts %}

@@ -24,7 +24,6 @@ def register():
 
     user = get_user(email=email).first()
     if user is not None:
-        print user.email
         raise WebException("Email already in use.")
 
     user = User(name, email, password)
