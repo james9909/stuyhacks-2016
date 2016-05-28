@@ -7,6 +7,10 @@
     #nav{
         margin-bottom: 0px;
     }
+    
+    #projects{
+        
+    }
 </style>
 {% endblock %}
 {% block body %}
@@ -16,6 +20,12 @@
             <li class="sidebar-brand">
                 <a href="#">Your Lists</a>
             </li>
+            <ul class="nav nav-pills nav-stacked" id="projects">
+                    <li class="active"><a href="#">Project 0</a></li>
+                    <li><a href="#">Project 1</a></li>
+                    <li><a href="#">Project 2</a></li>
+                    <li><a href="#">Project 3</a></li>
+            </ul>
             <div>
             {#{% for task in tasks recursive %}
                 <br>
