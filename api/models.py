@@ -14,7 +14,8 @@ class User(db.Model):
         self.password = password
 
 class Task(db.Model):
-    uid = db.Column(db.Integer,unique=True, primary_key=True)
+    tid = db.Column(db.Integer, unique=True, primary_key=True)
+    uid = db.Column(db.Integer)
     priority = db.Column(db.Integer)
     title = db.Column(db.String(20))
     parent = db.Column(db.Integer)
