@@ -36,12 +36,12 @@
                 <br>
                 <div style="position: relative; left: 30px;">
                     <!-- TODO: REPLACE <b> WITH THE TASK DIV -->
-                    <b> Task: {{ task["name"] }} </b> <br>
+                    {#  <b> Task: {{ task["name"] }} </b> <br>
                     {% if task["children"]|length != 0 %}
                         {{ loop(task["children"]) }} </ul>
                     {% endif %}
                 </div>
-            {% endfor %}
+            {% endfor %} #}
             </div>
         </ul>
     </div>
