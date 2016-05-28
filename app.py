@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, session
+from flask import Flask, redirect, render_template, request, session, url_for
 
 import os
 
@@ -26,31 +26,35 @@ app.register_blueprint(api.users.blueprint, url_prefix="/api/users")
 
 @app.route('/')
 def home():
-    return render_template("home.html", logged_in=False)
+    data = api.users.get_data()
+    return render_template("home.html", data=data)
 
 @app.route("/logout")
 def logout():
     session.clear()
-    return render_template("home.html", logged_in=False)
+    return redirect("/")
 
 @app.route('/register')
 def register():
-    return render_template("register.html", logged_in=False)
+    data = api.users.get_data()
+    return render_template("register.html", data=data)
 
 @app.route('/login')
 def login():
-    return render_template("login.html", logged_in=False)
+    data = api.users.get_data()
+    return render_template("login.html", data=data)
 
 @app.route("/work")
 def work():
-    return render_template("toDoTemplate.html", title= "wtf", logged_in=True)
+    data = api.users.get_data()
+    return render_template("toDoTemplate.html", title= "wtf")
 
 #@app.route("/test")
 #def test():
 #    childChild = {"name": "spoopy", "children": []}
 #    child1 = {"name": "tomatoC1", "children": []}
 #    child2 = {"name": "tomatoC2", "children": [childChild]}
-# 
+#
 #    tempList = [
 #        {
 #            "name": "potato 1",
@@ -68,7 +72,7 @@ def work():
 #
 #@app.route("/tasks")
 #def tasks():
-    
+
 
 if __name__ == "__main__":
     app.debug = True
