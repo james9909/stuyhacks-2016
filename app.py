@@ -3,8 +3,6 @@ from flask import Flask, render_template, request
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///database.db"
 
-logged_in = False
-
 with app.app_context():
     from api.models import db, User
     db.init_app(app)
@@ -12,19 +10,19 @@ with app.app_context():
 
 @app.route('/')
 def home():
-    return render_template("home.html", logged_in=logged_in)
+    return render_template("home.html", logged_in=False)
 
 @app.route('/register')
 def register():
-    return render_template("register.html", logged_in=logged_in)
+    return render_template("register.html", logged_in=False)
 
 @app.route('/login')
 def login():
-    return render_template("login.html", logged_in=logged_in)
+    return render_template("login.html", logged_in=False)
 
 @app.route("/work")
 def work():
-	return render_template("toDoTemplate.html", title= "wtf", p = "not like this", logged_in = logged_in)
+    return render_template("toDoTemplate.html", title= "wtf", p = "not like this", logged_in=True)
 
 if __name__ == "__main__":
     app.debug = True
