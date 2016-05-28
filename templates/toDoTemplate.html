@@ -1,17 +1,15 @@
 {% extends "base.html" %}
 {% block title %}Index{% endblock %}
 {% block head %}
+    <title > ToDo </title>
     {{ super() }}
-    <link rel="stylesheet" href="simple-sidebar.css" >
-    <style type="text/css">
-        .important { color: #336699; }
-    </style>
-    <title > {{title}} </title>
+    <link href="../static/simple-sidebar.css" rel="stylesheet">
 {% endblock %}
-{% block content %}
 
     {% block body %}
         {{ super() }}
+
+<div id = "wrapper">
 <div id="sidebar-wrapper">
     <ul class="sidebar-nav">
         <li class="sidebar-brand">
@@ -22,7 +20,18 @@
         <li> <a href="#">Take out foes</a> </li>
     </ul>
 </div>
+    
+    <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1>Simple Sidebar</h1>
+                        <p>TASDFASDFASDFASDF</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+</div>
         {{p}}
-
-    {% endblock %}
 {% endblock %}
