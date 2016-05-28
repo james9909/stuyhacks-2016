@@ -14,7 +14,7 @@ def api_wrapper(f):
         web_result = {}
         response = 200
         try:
-            web_result = f(*args, **kwds)
+            web_result = f(*args, **kwargs)
         except WebException as error:
             web_result = { "success": 0, "message": str(error) }
         except Exception as error:
