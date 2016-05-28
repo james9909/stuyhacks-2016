@@ -6,14 +6,14 @@ db = SQLAlchemy()
 
 class User(db.Model):
     uid = db.Column(db.Integer, unique=True, primary_key=True)
-    name = db.Column(db.String(30))
-    email = db.Column(db.String(64), unique=True)
+    name = db.Column(db.String(64))
+    email = db.Column(db.String(128), unique=True)
     password = db.Column(db.String(128))
 
     def __init__(self, name, email, password):
         self.name = name
         self.email = email
-        self.password = password
+        self.password = utils.hash(password)
 
 class Task(db.Model):
     tid = db.Column(db.Integer, unique=True, primary_key=True)

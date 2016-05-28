@@ -1,9 +1,20 @@
 from flask import Flask, render_template, request
 
+import os
+
 import api
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///database.db"
+
+with open(".secret_key", "a+b") as f:
+    secret_key = f.read()
+    if not secret_key:
+        secret_key = os.urandom(128)
+        f.write(secret_key)
+        f.flush()
+    app.secret_key = secret_key
+    f.close()
 
 with app.app_context():
     from api.models import *
@@ -11,6 +22,7 @@ with app.app_context():
     db.create_all()
 
 app.register_blueprint(api.tasks.blueprint, url_prefix="/api/tasks")
+app.register_blueprint(api.users.blueprint, url_prefix="/api/users")
 
 @app.route('/')
 def home():
