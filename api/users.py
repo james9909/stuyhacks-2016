@@ -44,7 +44,6 @@ def login():
         raise WebException("Invalid credentials.")
 
     if utils.check_hash(user.password, password):
-        session["email"] = user.email
         session["uid"] = user.uid
         session["logged_in"] = True
         return { "success": 1, "message": "Success!" }
@@ -64,3 +63,12 @@ def get_user(uid=None, name=None, email=None):
         match.update({"email": email})
 
     return User.query.filter_by(**match)
+
+def get_data():
+    data = {}
+    logged_in = "logged_in" in session and session["logged_in"]
+    user = get_user(session.get("uid")).first()
+    if user is not None:
+        data["uid"] = user.uid
+    data["logged_in"] = logged_in
+    return data
