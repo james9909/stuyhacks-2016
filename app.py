@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, session
 
 import os
 
@@ -26,6 +26,11 @@ app.register_blueprint(api.users.blueprint, url_prefix="/api/users")
 
 @app.route('/')
 def home():
+    return render_template("home.html", logged_in=False)
+
+@app.route("/logout")
+def logout():
+    session.clear()
     return render_template("home.html", logged_in=False)
 
 @app.route('/register')
