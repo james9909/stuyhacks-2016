@@ -32,15 +32,39 @@
     </div>
     <div id="page-content-wrapper">
         <div class="container-fluid">
+            <h1 align="center">List name</h1>
             <div class="col-lg-6" id="left">
-                <h1>List name</h1>
+                <h2 align="center">Tasks</h2>
+                <div class="input-group">
+                    <span class="input-group-addon" id="plus-addon">+</span>
+                    <input class="form-control" type="text" required name="task" id="task" placeholder="Add a task" autocomplete="off" />
+                </div>
+                <br>
+                <div class="panel-group">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <input type="checkbox" name="stuff">
+                            TASK 1
+                            <!-- can have this pull up pop up-->
+                            <span class="glyphicon glyphicon-cog pull-right"></span>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <input type="checkbox" name="stuff">
+                            TASK 2
+                            <!-- can have this pull up pop up-->
+                            <span class="glyphicon glyphicon-cog pull-right"></span>
+                        </div>
+                    </div>
+                </div>
                 <!-- YOU CAN CHANGE THIS PART -->
                 {% for task in task_list %}
                 <div><input type="checkbox" name="something">{{ task }}</div>
                 {% endfor %}
             </div>
             <div class="col-lg-6" id="right">
-                <h1>Completed</h1>
+                <h2 align="center">Completed</h2>
                 <!-- ADD THE COMPLETED SHIT HERE -->
             </div>
         </div>
