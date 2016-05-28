@@ -1,3 +1,13 @@
+<!--
+    Yall better get ready
+    To dive nose deep in some Spaghetti
+    Cause our program is front end heavy
+    and it's still not ready
+
+    and that's making me upsetti :/
+-->
+
+
 {% extends "base.html" %}
 {% block head %}
 <title>ToDo</title>
@@ -50,8 +60,13 @@
             <div class="col-lg-6" id="left">
                 <h2 align="center">Tasks</h2>
                 <div class="input-group">
-                    <span class="input-group-addon" id="plus-addon">+</span>
-                    <input class="form-control" type="text" required name="task" id="task" placeholder="Add a task" autocomplete="off" />
+                    <button type="button" id="" class="btn btn-default" 
+                        onclick="addTask(-1)"> + </button>
+                    <!--
+                    <button class="input-group-addon" id="plus-addon">+</button>
+                    <input class="form-control" type="text" required
+                    name="task" id="task" placeholder="Add a task"
+                    autocomplete="off" /> -->
                 </div>
                 <br>
 
@@ -103,12 +118,62 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="newTaskModal" role="dialog">
+        <div class="modal-dialog">
+            
+            <div class="modal-content">
+                <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"> 
+                            x
+                        </button>
+                        <h2 class= modal-title"> New Task </h2>
+                    </form>
+                </div>
+                <div class="modal-body">
+                    <form id="task_form">
+                        Name: <br>
+                        <input class="form-control" type="text" required
+                        name="name" id="modalInputName" placeholder="New Task" autocomplete="off"/>
+                        <input id="task_form_submit" type="submit" class="btn btn-default"
+                        data-dismiss="modal" value="Add Task">
+                    </form>    
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+
+
 <!-- Menu Toggle Script -->
 <script>
     $("#menu-toggle").click(function (e) {
         e.preventDefault();
         $("#wrapper").toggleClass("toggled");
+    });
+
+    var addTask = function(task) {
+        $("#newTaskModal").modal();
+    }
+    $("#task_form_submit").click(function() {
+        var data = $("#task_form").serializeObject();
+        console.log("aylmao");
+        api_call("POST","/api/tasks/add", data,
+        function() {
+            console.log(
+                "Worked! \n" + 
+                "Sent: \n" +
+                JSON.stringify(data)
+            );
+        },
+        function() {
+            console.log(
+                "Failed :( \n" +
+                "Sent \n" +
+                JSON.stringify(data)
+            );
+        });
     });
 </script>
 {% endblock %}
