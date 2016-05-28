@@ -19,7 +19,7 @@ def register():
     if password != confirm_password:
         raise WebException("Passwords do not match.")
 
-    if len(password) < 5:
+    if len(password) < 4:
         raise WebException("Passwords should be at least four characters long.")
 
     user = get_user(email=email).first()
@@ -69,5 +69,6 @@ def get_data():
     user = get_user(session.get("uid")).first()
     if user is not None:
         data["uid"] = user.uid
+        data["name"] = user.name
     data["logged_in"] = logged_in
     return data

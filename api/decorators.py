@@ -10,11 +10,11 @@ response_header = { "Content-Type": "application/json; charset=utf-8" }
 
 def api_wrapper(f):
     @wraps(f)
-    def wrapper(*args, **kwds):
+    def wrapper(*args, **kwargs):
         web_result = {}
         response = 200
         try:
-            web_result = f(*args, **kwds)
+            web_result = f(*args, **kwargs)
         except WebException as error:
             web_result = { "success": 0, "message": str(error) }
         except Exception as error:
@@ -24,4 +24,14 @@ def api_wrapper(f):
         response = make_response(result)
 
         return response
+    return wrapper
+
+import users # Below api_wrapper to prevent import loops
+
+def login_required(f):
+    @wraps(f)
+    def wrapper(*args, **kwargs):
+        if not users.is_logged_in():
+            return { "success": 0, "message": "You must be logged in to do this." }
+        return f(*args, **kwargs)
     return wrapper

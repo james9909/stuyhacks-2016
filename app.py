@@ -47,7 +47,10 @@ def login():
 @app.route("/work")
 def work():
     data = api.users.get_data()
-    return render_template("toDoTemplate.html", title= "wtf",data=data)
+    taskList = api.tasks.tasks_to_list(api.tasks.get_all_tasks())
+    print str(taskList)
+    return render_template("toDoTemplate.html", title= "wtf",data = data, 
+        tasks = taskList)
 
 #@app.route("/test")
 #def test():
