@@ -27,6 +27,21 @@
                     <li><a href="#">Project 2</a></li>
                     <li><a href="#">Project 3</a></li>
             </ul>
+
+
+            <div>
+            {#{% for task in tasks recursive %}
+                <br>
+                <div style="position: relative; left: 30px;">
+                    <!-- TODO: REPLACE <b> WITH THE TASK DIV -->
+                      <b> Task: {{ task["name"] }} </b> <br>
+                    {% if task["children"]|length != 0 %}
+                        {{ loop(task["children"]) }} </ul>
+                    {% endif %}
+                </div>
+            {% endfor %} #}
+            </div>
+
         </ul>
     </div>
     <div id="page-content-wrapper">
