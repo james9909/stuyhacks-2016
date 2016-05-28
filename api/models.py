@@ -1,5 +1,7 @@
 from flask.ext.sqlalchemy import SQLAlchemy
 
+import utils
+
 db = SQLAlchemy()
 
 class User(db.Model):
@@ -26,3 +28,17 @@ class Task(db.Model):
         self.priority = priority
         self.parent = parent
         self.completed = completed
+
+    def get_children(self):
+        children = []
+        tasks = Task.query.filter_by(parent=self.tid).all()
+        if query is not None:
+            for task in tasks:
+                children.append({
+                    "tid": task.tid,
+                    "priority": task.priority,
+                    "title": task.title,
+                    "parent": task.parent,
+                    "completed": task.completed
+                })
+        return chilren
