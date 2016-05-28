@@ -4,11 +4,9 @@
 {{ super() }}
 <link href="../static/simple-sidebar.css" rel="stylesheet">
 <style>
-    
     #workNav{
         margin-bottom: 0px;
     }
-    
 </style>
 {% endblock %}
 {% block body %}
@@ -47,14 +45,16 @@
     </div>
     <div id="page-content-wrapper">
         <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-6">
-                    <h1>List name</h1>
-                    <!-- YOU CAN CHANGE THIS PART -->
-                    {% for task in task_list %}
-                    <div><input type="checkbox" name="something">{{ task }}</div>
-                    {% endfor %}
-                </div>
+            <div class="col-lg-6" id="left">
+                <h1>List name</h1>
+                <!-- YOU CAN CHANGE THIS PART -->
+                {% for task in task_list %}
+                <div><input type="checkbox" name="something">{{ task }}</div>
+                {% endfor %}
+            </div>
+            <div class="col-lg-6" id="right">
+                <h1>Completed</h1>
+                <!-- ADD THE COMPLETED SHIT HERE -->
             </div>
         </div>
     </div>
