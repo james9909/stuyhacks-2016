@@ -22,6 +22,11 @@ def register():
 def login():
     return render_template("login.html", logged_in=logged_in)
 
+@app.route("/")
+def work():
+    logged_in = True
+	return render_template("toDoTemplate.html", title= "wtf", p = "not like this", logged_in = logged_in)
+
 if __name__ == "__main__":
     app.debug = True
     app.run(host="0.0.0.0", port=5000)
