@@ -22,7 +22,7 @@ def login():
 
 @app.route("/work")
 def work():
-    return render_template("toDoTemplate.html", title= "wtf", p = "not like this", logged_in=True)
+    return render_template("toDoTemplate.html", title= "wtf", logged_in=True)
 
 if __name__ == "__main__":
     app.debug = True
