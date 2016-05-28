@@ -9,17 +9,22 @@
         {% endblock %}
     </head>
     <body>
-        <nav class="navbar navbar-default">
+        <nav id="nav" class="navbar navbar-default">
             <div class="container-fluid">
+                {% if not data["logged_in"] %}
                 <div class="navbar-header">
                     <a class="navbar-brand" href="/">To Do</a>
                 </div>
-                {% if not data["logged_in"] %}
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="/login">Log In</a></li>
                     <li><a href="/register">Sign Up</a></li>
                 </ul>
                 {% else %}
+                <ul class="nav navbar-nav navbar-left">
+                    <li>
+                    <a href="#menu-toggle" id="menu-toggle"><span class="glyphicon glyphicon-tasks"></span></a>
+                    </li>
+                </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="/logout">Log out</a></li>
                 </ul>
