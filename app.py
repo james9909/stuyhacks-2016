@@ -49,8 +49,13 @@ def work():
     data = api.users.get_data()
     taskList = api.tasks.tasks_to_list(api.tasks.get_all_tasks())
     print str(taskList)
-    return render_template("toDoTemplate.html", title= "wtf",data = data, 
+    return render_template("toDoTemplate.html", title= "wtf",data=data, 
         tasks = taskList)
+
+@app.route("/settings")
+def settings():
+    data = api.users.get_data()
+    return render_template("settings.html", data=data)
 
 #@app.route("/test")
 #def test():
