@@ -54,7 +54,7 @@ def update_task_request():
 
     return { "success": 1, "message": "Task updated." }
 
-def get_task(tid=None, parent=None, priority=None)
+def get_task(tid=None, parent=None, priority=None):
     match = {}
     if tid is not None:
         match.update({"tid": tid})
