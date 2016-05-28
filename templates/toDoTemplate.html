@@ -1,8 +1,8 @@
-{% extends "base.html" %} {% block title %}Index{% endblock %} {% block head %}
-<title> ToDo </title>
+{% extends "base.html" %}
+{% block head %}
+<title>ToDo</title>
 {{ super() }}
-<link href="../static/simple-sidebar.css" rel="stylesheet"> {% endblock %} {% block body %} {{ super() }}
-
+<link href="../static/simple-sidebar.css" rel="stylesheet">
 <style>
     
     #workNav{
@@ -10,8 +10,8 @@
     }
     
 </style>
-
-
+{% endblock %}
+{% block body %}
 <nav id = "workNav" class="navbar navbar-default">
     <div class="container-fluid">
         <ul class="nav navbar-nav navbar-left">
@@ -24,41 +24,32 @@
         </ul>
     </div>
 </nav>
-
 <div id="wrapper">
     <div id="sidebar-wrapper">
         <ul class="sidebar-nav">
             <li class="sidebar-brand">
-                <a href="#"> Your F***ing Stuff </a>
+                <a href="#">Your Lists</a>
             </li>
-            <li> <a href="#">Take out dog</a> </li>
-            <li> <a href="#">Take out cat</a> </li>
-            <li> <a href="#">Take out foes</a> </li>
+            <!-- YOU CAN CHANGE THIS PART -->
+            {% for list in list_of_lists %}
+            <li> <a href="#">{{ list }}</a> </li>
+            {% endfor %}
         </ul>
     </div>
-
     <div id="page-content-wrapper">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-12">
-                    <h1>Eyyy</h1>
-                    <p>TASDFASDFASDFASDF</p>
-                    
+                <div class="col-lg-6">
+                    <h1>List name</h1>
+                    <!-- YOU CAN CHANGE THIS PART -->
+                    {% for task in task_list %}
+                    <div><input type="checkbox" name="something">{{ task }}</div>
+                    {% endfor %}
                 </div>
             </div>
         </div>
     </div>
-
 </div>
-
-
-
-<!-- jQuery -->
-<script src="static/jquery.js"></script>
-
-<!-- Bootstrap Core JavaScript -->
-<script src="static/bootstrap.min.js"></script>
-
 <!-- Menu Toggle Script -->
 <script>
     $("#menu-toggle").click(function (e) {
@@ -66,6 +57,4 @@
         $("#wrapper").toggleClass("toggled");
     });
 </script>
-
-
 {% endblock %}
