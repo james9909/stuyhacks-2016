@@ -26,6 +26,8 @@ def api_wrapper(f):
         return response
     return wrapper
 
+import users # Below api_wrapper to prevent import loops
+
 def login_required(f):
     @wraps(f)
     def wrapper(*args, **kwargs):
