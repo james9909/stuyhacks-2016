@@ -16,18 +16,6 @@
             <li class="sidebar-brand">
                 <a href="#">Your Lists</a>
             </li>
-            <div>
-            {#{% for task in tasks recursive %}
-                <br>
-                <div style="position: relative; left: 30px;">
-                    <!-- TODO: REPLACE <b> WITH THE TASK DIV -->
-                      <b> Task: {{ task["name"] }} </b> <br>
-                    {% if task["children"]|length != 0 %}
-                        {{ loop(task["children"]) }} </ul>
-                    {% endif %}
-                </div>
-            {% endfor %} #}
-            </div>
         </ul>
     </div>
     <div id="page-content-wrapper">
@@ -40,12 +28,32 @@
                     <input class="form-control" type="text" required name="task" id="task" placeholder="Add a task" autocomplete="off" />
                 </div>
                 <br>
+
                 <div class="panel-group">
+                    {% for task in tasks recursive %}
+                        <br>
+                        <!--<div style="position: relative; left: 30px;"> -->
+
+                            <!-- TODO: REPLACE <b> WITH THE TASK DIV -->
+                        <div class="panel panel-default"> 
+                            <div class="panel-body">
+                                Task: {{ task["name"] }} </b> <br>
+                                <span class="glyphicon glyphicon-cog pull-right"></span>
+                                <span class="input-group-addon" id="plus-addon">+</span>
+                            </div>
+                        </div>
+                        {% if task["children"]|length != 0 %}
+                            {{ loop(task["children"]) }} </ul>
+                        {% endif %}
+
+                    {% endfor %}
+                </div>
+                <!--<div class="panel-group">
                     <div class="panel panel-default">
                         <div class="panel-body">
                             <input type="checkbox" name="stuff">
                             TASK 1
-                            <!-- can have this pull up pop up-->
+                            can have this pull up pop up
                             <span class="glyphicon glyphicon-cog pull-right"></span>
                         </div>
                     </div>
@@ -53,15 +61,15 @@
                         <div class="panel-body">
                             <input type="checkbox" name="stuff">
                             TASK 2
-                            <!-- can have this pull up pop up-->
+                            can have this pull up pop up
                             <span class="glyphicon glyphicon-cog pull-right"></span>
                         </div>
                     </div>
-                </div>
-                <!-- YOU CAN CHANGE THIS PART -->
+                </div> -->
+                {# YOU CAN CHANGE THIS PART
                 {% for task in task_list %}
                 <div><input type="checkbox" name="something">{{ task }}</div>
-                {% endfor %}
+                {% endfor %}#}
             </div>
             <div class="col-lg-6" id="right">
                 <h2 align="center">Completed</h2>
