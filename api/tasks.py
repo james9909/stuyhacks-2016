@@ -1,12 +1,13 @@
 from flask import current_app as app, Blueprint, request
 
-from decorators import api_wrapper, WebException
+from decorators import api_wrapper, login_required, WebException
 from models import db, Task
 
 blueprint = Blueprint("tasks", __name__)
 
 @blueprint.route("/add", methods=["POST"])
 @api_wrapper
+@login_required
 def add_task():
     form = request.form
     title = form.get("title")
@@ -21,6 +22,7 @@ def add_task():
 
 @blueprint.route("/remove", methods=["POST"])
 @api_wrapper
+@login_required
 def remove_task():
     form = request.form
     tid = form.get("tid")
@@ -35,6 +37,7 @@ def remove_task():
 
 @blueprint.route("/update", methods=["POST"])
 @api_wrapper
+@login_required
 def update_task():
     form = request.form
     updates = {}

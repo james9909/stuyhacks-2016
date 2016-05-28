@@ -69,5 +69,6 @@ def get_data():
     user = get_user(session.get("uid")).first()
     if user is not None:
         data["uid"] = user.uid
+        data["name"] = user.name
     data["logged_in"] = logged_in
     return data
