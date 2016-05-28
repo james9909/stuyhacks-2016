@@ -22,7 +22,7 @@ def register():
 def login():
     return render_template("login.html", logged_in=logged_in)
 
-@app.route("/")
+@app.route("/work")
 def work():
     logged_in = True
 	return render_template("toDoTemplate.html", title= "wtf", p = "not like this", logged_in = logged_in)
