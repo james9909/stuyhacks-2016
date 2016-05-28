@@ -3,14 +3,20 @@
 {{ super() }}
 <link href="../static/simple-sidebar.css" rel="stylesheet"> {% endblock %} {% block body %} {{ super() }}
 
-<nav class="navbar navbar-default">
+<style>
+    #workNav{
+        margin-bottom: 0px;
+    }
+</style>
+
+
+<nav id = "workNav" class="navbar navbar-default">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="/">To Do</a>
+            <a href="#menu-toggle" id="menu-toggle"><span class="glyphicon glyphicon-tasks" aria-hidden="true"></span></a>
         </div>
-        <ul class="nav navbar-nav">
-            <li><a href="/login">Log In</a></li>
-            <li><a href="/register">Sign Up</a></li>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="/login">Log Out</a></li>
         </ul>
     </div>
 </nav>
@@ -33,7 +39,7 @@
                 <div class="col-lg-12">
                     <h1>Eyyy</h1>
                     <p>TASDFASDFASDFASDF</p>
-                    <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>
+                    
                 </div>
             </div>
         </div>
