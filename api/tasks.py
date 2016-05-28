@@ -54,7 +54,7 @@ def update_task_request():
 
     return { "success": 1, "message": "Task updated." }
 
-def get_task(tid=None, parent=None, priority=None):
+def get_task(tid=None, parent=None, priority=None, completed=False):
     match = {}
     if tid is not None:
         match.update({"tid": tid})
@@ -62,5 +62,7 @@ def get_task(tid=None, parent=None, priority=None):
         match.update({"parent": parent})
     if priority is not None:
         match.update({"priority": priority})
+    if completed is not None:
+        match.update({"completed": completed})
 
     return Task.query.filter_by(**match)
