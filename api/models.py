@@ -15,14 +15,6 @@ class User(db.Model):
         self.email = email
         self.password = utils.hash(password)
 
-#class Project(db.Model):
-#    pid = db.Column(db.Integer, unique=True, primary_key=True)
-#    #uid
-#    title = db.Column(db.String(20))
-#
-#    def __init__(self, title):
-#        self.title = title
-#
 class Task(db.Model):
     tid = db.Column(db.Integer, unique=True, primary_key=True)
     uid = db.Column(db.Integer)

@@ -54,16 +54,29 @@
 
                                 <!-- TODO: REPLACE <b> WITH THE TASK DIV -->
                             <div class="panel panel-default">
+                                <!--<div style="display: inline-block;
+                                float:none;horizontal-align: center;"> -->
                                 <div class="panel-body">
-                                    Task: {{ task.title }} </b> <br>
-                                    <span class="glyphicon glyphicon-cog pull-right"></span>
-                                    <button type="button" id="" class="btn btn-default"
+                                    <div class="panel-default pull-left">
+                                        <label><input type="checkbox"
+                                        id="checkbox{{task.tid}}"
+                                        value=""></label>
+                                    </div>
+                                        <b> {{ task.title }} </b>
+                                    <div class="pull-right">
+                                        <button type="button" id="settings"
+                                        class="btn btn-default">
+                                            <span class="glyphicon glyphicon-cog"></span>
+                                        </button>
+                                        <button type="button" class="btn btn-default"
                                         onclick="addTask({{ task.tid}} )"> + </button>
+                                    </div>
                                 </div>
+                                <!--</div>-->
                             </div>
                             {% if task.children and task.children|length != 0 %}
                                 {{ loop(task.children) }} </ul>
-                            {% endif %}
+                            {% endif %} 
                         </div>
 
                     {% endfor %}
@@ -138,6 +151,7 @@
         global_parent = task;
         $("#newTaskModal").modal();
     }
+
 
     $("#task_form_submit").click(function() {
         var data = $("#task_form").serializeObject();
