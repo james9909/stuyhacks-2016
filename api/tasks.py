@@ -42,21 +42,20 @@ def remove_task():
 @login_required
 def update_task():
     form = request.form
-    updates = {}
-    tid = form.get("tid")
-    if "title" in form:
-        updates.update({"title": form.get("title")})
-    if "priority" in form:
-        updates.update({"priority": form.get("priority")})
-    if "completed" in form:
-        updates.update({"completed": form.get("completed")})
 
+    tid = form.get("tid")
     result = get_task(tid=tid)
     task = result.first()
     if task is None:
         raise WebException("Task does not exist.")
 
-    task.update(**updates)
+    if "title" in form:
+        task.title = form.get("title")
+    if "priority" in form:
+        task.priority = form.get("priority")
+    if "completed" in form:
+        task.completed = int(form.get("completed") == "true")
+
     db.session.commit()
 
     return { "success": 1, "message": "Task updated." }
