@@ -14,7 +14,8 @@ def add_task():
     parent = form.get("parent", -1)
     priority = form.get("priority", 0)
     uid = session.get("uid")
-    task = Task(uid, title, priority=priority, parent=parent)
+    project = form.get("pid")
+    task = Task(uid, title, priority=priority, parent=parent, project=project)
     with app.app_context():
         db.session.add(task)
         db.session.commit()
@@ -75,8 +76,6 @@ def get_task(tid=None, parent=None, priority=None, completed=False):
 
 def get_all_tasks():
     return Task.query.all()
-
-
 
 #def tasks_to_list(tasks):
 #    taskList = []

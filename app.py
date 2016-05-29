@@ -51,6 +51,11 @@ def work():
     data = api.users.get_data()
     taskList = api.tasks.get_task(parent=-1).all()
     projects = api.projects.get_project().all()
+    if projects is not None:
+        for project in projects:
+            tmp = filter(lambda x: x.parent == -1, project.tasks)
+            project.tasks = tmp
+
     return render_template("toDoTemplate.html", data = data, tasks = taskList, projects=projects)
 
 #@app.route("/test")
