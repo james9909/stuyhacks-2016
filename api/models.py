@@ -36,6 +36,16 @@ class Task(db.Model):
     completed = db.Column(db.Boolean)
     children = db.relationship("Task", uselist=True)
 
+    def update(self,args): 
+        print "ARGS: " + str(args)
+        if "completed" in args:
+            self.completed = bool(args["completed"])
+        if "title" in args:
+            self.title = args["title"]
+
+        print "CHECKED: " + str(self.completed)
+        db.session.commit()
+
     def __init__(self, uid, title, priority=0, parent=-1, project=-1, completed=False):
         self.uid = uid
         self.title = title

@@ -152,11 +152,14 @@ color:#0eb0b7;
                                                 <div class="edit_item">
                                                     <span class="glyphicon glyphicon-cog pull-right"></span>
                                                 </div>
-                                                <div class="delete-item">
-                                                    <span class="glyphicon
-                                                        glyphicon-trash
-                                                        pull-right"></span>
-                                                </div>
+                                                <button type="button"
+                                                onclick="deleteTask({{task.tid}})">
+                                                     <div class="delete-item">
+                                                          <span class="glyphicon
+                                                              glyphicon-trash
+                                                              pull-right"></span>
+                                                     </div>
+                                                </button>
                                             </span>
 
                                             </div>
@@ -260,6 +263,12 @@ color:#0eb0b7;
              "success", "Yay!"
                     ,function(){});
         }
+    }
+
+    var deleteTask = function(task) {
+        console.log("POTAOOOO");
+        api_call("POST","/api/tasks/remove",
+            {"tid":task},function(){},function(){});
     }
 
 
