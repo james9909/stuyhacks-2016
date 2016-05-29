@@ -47,6 +47,8 @@ def update_task():
         updates.update({"title": form.get("title")})
     if "priority" in form:
         updates.update({"priority": form.get("priority")})
+    if "completed" in form:
+        updates.update({"completed": form.get("completed")})
 
     result = get_task(tid=tid)
     task = result.first()
@@ -57,7 +59,6 @@ def update_task():
     db.session.commit()
 
     return { "success": 1, "message": "Task updated." }
-
 
 def get_task(tid=None, parent=None, priority=None, completed=False):
     match = {}

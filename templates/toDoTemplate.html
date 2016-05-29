@@ -75,12 +75,20 @@
                                             <!-- TODO: REPLACE <b> WITH THE TASK DIV -->
                                         <div class="panel panel-default">
                                             <div class="panel-body">
-                                                <input type="checkbox">
+                                                <input
+                                                type="checkbox"
+                                                id="taskBox{{task.tid}}"
+                                                    onclick="checkOffTask({{task.tid}});"
+                                                {% if task.checked %}
+                                                    checked
+                                                {% endif %}
+                                                >
                                                 Task: {{ task.title }} </b> <br>
                                                 <span class="glyphicon glyphicon-cog pull-right"></span>
                                                 <button type="button" id="" class="btn btn-default"
                                                     onclick="addTask({{ task.tid}} )"> + </button>
                                             </div>
+                                            <div id="taskMessage{{task.tid}}"></div>
                                         </div>
                                         {% if task.children and task.children|length != 0 %}
                                             {{ loop(task.children) }} </ul>
@@ -161,6 +169,20 @@
     var addTask = function(task) {
         global_parent = task;
         $("#newTaskModal").modal();
+    }
+
+    var checkOffTask = function(task) {
+        var box = document.getElementById("taskBox" + task);
+        api_call("POST","/api/tasks/update",
+        {"checked" : box.checked}, function(){console.log("gud")},
+        function(){console.log("bad")} );
+        if (box.checked) {
+            console.log("CHECK");
+        
+            display_message("taskMessage" + task,
+             "success", "Yay!" 
+                    ,function(){});
+        }
     }
 
 
