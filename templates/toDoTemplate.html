@@ -152,8 +152,11 @@ color:#0eb0b7;
                                                 </label>
                                                 <button type="button" class="btn btn-default"
                                                 onclick="addTask({{ task.tid}}, {{ project.pid }})"> + </button>
-                                                <div class="edit_item">
-                                                    <span class="glyphicon glyphicon-cog pull-right"></span>
+                                                <div class="edit_item"
+                                                    onclick="editTask({{task.title}})">
+                                                    <span class="glyphicon
+                                                        glyphicon-cog
+                                                        pull-right"></span>
                                                 </div>
                                                 <div onclick="delete_task({{task.tid}})" class="delete-item">
                                                     <span class="glyphicon
@@ -215,7 +218,6 @@ color:#0eb0b7;
                         x
                     </button>
                     <h2 class="modal-title">New Task</h2>
-                </form>
             </div>
             <div class="modal-body">
                 <form id="task_form">
@@ -234,10 +236,39 @@ color:#0eb0b7;
     </div>
 </div>
 
+<div class="modal fade" id="editTaskModal" role="dialog">
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        x
+                    </button>
+                    <h2 class="modal-title">Edit Task</h2>
+            </div>
+            <div class="modal-body">
+                <form id="update_form" action="task_update_submit()">
+                    Title: <br>
+                    <div class="input-group">
+                        <input class="form-control" type="text" required
+                        name="title" id="modalInputName" value=""  autocomplete="off"/>
+                        <span class="input-group-btn">
+                            <input id="task_update_submit" type="submit" class="btn btn-default"
+                            data-dismiss="modal" value="Change Title">
+                        </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- Menu Toggle Script -->
 <script>
     var global_parent = -1;
+    var gloal_task = -1;
     var global_project = -1;
+    var global_title = ""
 
     $("#menu-toggle").click(function (e) {
         e.preventDefault();
@@ -247,24 +278,39 @@ color:#0eb0b7;
     var addTask = function(task, project) {
         global_parent = task;
         global_project = project;
-        console.log(project);
         $("#newTaskModal").modal();
+    }
+
+    var editTask = function(task) {
+        global_title = task;
+        $("#editTaskModal").modal();
     }
 
     var checkOffTask = function(task) {
         var box = document.getElementById("taskBox" + task);
-        api_call("POST","/api/tasks/update", {"completed" : box.checked}, function() {
+        api_call("POST","/api/tasks/update", {"tid": task,"completed" : box.checked}, function() {
             display_message("taskMessage"+task, "success", "yay", function() { });
         }, function(){ });
     }
 
-
-    $("#task_form_submit").click(function() {
-        var data = $("#task_form").serializeObject();
+    $("#task_form_submit").click(function(task) {
+        var data = $("#task_form" + task).serializeObject();
         data["parent"] = global_parent;
         data["pid"] = global_project;
 
         api_call("POST","/api/tasks/add", data, function(result) {
+            if (result["success"] == 1) {
+                location.reload();
+            }
+        }, function() {
+        });
+    });
+
+    $("#task_update_submit").click(function() {
+        var data = $("#update_form").serializeObject();
+        data["title"] = global_title;
+
+        api_call("POST","/api/tasks/update", data, function(result) {
             if (result["success"] == 1) {
                 location.reload();
             }
