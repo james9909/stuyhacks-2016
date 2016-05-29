@@ -22,8 +22,8 @@
             </li>
             <ul class="nav nav-pills nav-stacked" id="projects">
                     {% for project in projects %}
-                        {% if loop.indexO == 0 %}
-                            <li><a data-toggle="tab" data-target="#{{project.title}}" class="tab-pane fade in active">{{ project.title}}</a></li>
+                        {% if loop.index0 == 0 %}
+                            <li class="active"><a data-toggle="tab" data-target="#{{project.title}}">{{ project.title}}</a></li>
                         {% else %}
                             <li><a data-toggle="tab" data-target="#{{project.title}}">{{ project.title }}</a></li>
                         {% endif %}
