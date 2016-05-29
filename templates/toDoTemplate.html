@@ -266,7 +266,9 @@ color:#0eb0b7;
         var data = $("#new_project").serializeObject();
 
         api_call("POST", "/api/projects/add", data, function(result) {
-            console.log(result);
+            if (result["success"] == 1) {
+                location.reload();
+            }
         });
     }
 </script>
