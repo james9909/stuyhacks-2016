@@ -23,8 +23,16 @@
             <ul class="nav nav-pills nav-stacked" id="projects">
                     <li><a href="#">Project 0</a></li>
                     <li><a href="#">Project 0</a></li>
-                    <li><button type="button" id="." class="btn btn-default"> +
-                    </button>
+                    <li>
+                        <div class="input-group">
+                            <form id="new_project" onsubmit="addProject(-1)">
+                                <input type="submit" class="input-group-addon
+                                col-md-2" id=""
+                                value="+">
+                                <input type="text" class="col-md-9" placeholder="Project Name" aria-describedby="basic-addon1">
+                            </form>
+                        </div>
+                    </li>
                     <li><a href="#">Project 3</a></li>
             </ul>
         </ul>
