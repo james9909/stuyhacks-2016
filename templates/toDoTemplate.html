@@ -25,7 +25,6 @@
                         {% if loop.indexO == 0 %}
                             <li><a data-toggle="tab" data-target="#{{project.title}}" class="tab-pane fade in active">{{ project.title}}</a></li>
                         {% else %}
-                            <p>  {{loop.index0 == 0}} </p>
                             <li><a data-toggle="tab" data-target="#{{project.title}}">{{ project.title }}</a></li>
                         {% endif %}
                     {% endfor %}
@@ -35,7 +34,7 @@
                                 <input type="submit" class="input-group-addon
                                 col-md-2" id=""
                                 value="+">
-                                <input type="text" name="title" class="col-md-9" placeholder="Project Name" aria-describedby="basic-addon1">
+                                <input type="text" name="title" class="col-md-9" placeholder="Project Name" aria-describedby="basic-addon1" required>
                             </form>
                         </div>
                     </li>
