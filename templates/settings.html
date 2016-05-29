@@ -1,9 +1,16 @@
 {% extends "base.html" %}
 {% block head %}
-    <title>Settings</title>
-    {{ super() }}
+<title>Settings</title>
+{{ super() }}
 {% endblock %}
 {% block body %}
-    <div>
-    </div>
+<div class="col-lg-12">
+    <form action="/settings">
+        Background Color:<br>
+        <input type="radio" name="b_color" value="red"> red<br>
+        <input type="radio" name="b_color" value="blue"> blue<br>
+        <input type="radio" name="b_color" value="green"> green<br>
+        <input type="submit">
+    </form>
+</div>
 {% endblock %}

@@ -15,6 +15,10 @@ def register():
     email = form.get("email")
     password = form.get("password")
     confirm_password = form.get("confirm_password")
+    # default colors
+    b_color = "white"
+    side_color = "black"
+    nav_color = "#F8F8F8"
 
     if password != confirm_password:
         raise WebException("Passwords do not match.")
@@ -26,10 +30,19 @@ def register():
     if user is not None:
         raise WebException("Email already in use.")
 
-    user = User(name, email, password)
+    user = User(name, email, password, b_color, side_color, nav_color)
     db.session.add(user)
     db.session.commit()
     return { "success": 1, "message": "Success!" }
+
+@blueprint.route("/settings", methods=["POST"])
+@api_wrapper
+def settings():
+    form = request.form
+    b_color = form.get("b_color")
+    side_color = form.get("side_color")
+    nav_color = form.get("nav_color")
+    
 
 @blueprint.route("/login", methods=["POST"])
 @api_wrapper

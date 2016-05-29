@@ -9,11 +9,17 @@ class User(db.Model):
     name = db.Column(db.String(64))
     email = db.Column(db.String(128), unique=True)
     password = db.Column(db.String(128))
+    b_color = db.Column(db.String(32))
+    side_color = db.Column(db.String(32))
+    nav_color = db.Column(db.String(32))
 
-    def __init__(self, name, email, password):
+    def __init__(self, name, email, password, b_color, side_color, nav_color):
         self.name = name
         self.email = email
         self.password = utils.hash(password)
+        self.b_color = b_color
+        self.side_color = side_color
+        self.nav_color = nav_color
 
 class Task(db.Model):
     tid = db.Column(db.Integer, unique=True, primary_key=True)
