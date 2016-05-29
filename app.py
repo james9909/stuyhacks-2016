@@ -50,9 +50,8 @@ def login():
 def work():
     data = api.users.get_data()
     taskList = api.tasks.get_task(parent=-1).all()
-    print str(taskList)
-    return render_template("toDoTemplate.html", title= "wtf",data=data, 
-        tasks = taskList)
+    projects = api.projects.get_project().all()
+    return render_template("toDoTemplate.html", data = data, tasks = taskList, projects=projects)
 
 @app.route("/settings", methods=["POST","GET"])
 @api.decorators.redirect_if_not_logged_in("/")

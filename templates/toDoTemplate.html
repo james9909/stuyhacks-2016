@@ -16,106 +16,130 @@
             <li class="sidebar-brand">
                 <a href="#">Your Lists</a>
             </li>
-
             <ul class="nav nav-pills nav-stacked" id="projects">
-                    <li class="active"><a href="#">Project 0</a></li>
-                    <li><a href="#">Project 1</a></li>
-                    <li><a href="#">Project 2</a></li>
-                    <li><a href="#">Project 3</a></li>
+                    {% for project in projects %}
+                        {% if loop.indexO == 0 %}
+                            <li><a href="#{{project.title}}" class="tab-pane fade in active">{{ project.title}}</a></li>
+                        {% else %}
+                            <p>  {{loop.index0 == 0}} </p>
+                            <li><a href="#{{project.title}}">{{ project.title }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                    <li>
+                        <div class="input-group">
+                            <form id="new_project" onsubmit="add_project(); return false;">
+                                <input type="submit" class="input-group-addon
+                                col-md-2" id=""
+                                value="+">
+                                <input type="text" name="title" class="col-md-9" placeholder="Project Name" aria-describedby="basic-addon1">
+                            </form>
+                        </div>
+                    </li>
+                    <li style="visibility: hidden;"><a href="#">Project 3</a></li>
             </ul>
-
-
         </ul>
     </div>
-    <div id="page-content-wrapper">
-        <div class="container-fluid">
-            <h1 align="center">List name</h1>
-            <div class="col-lg-6" id="left">
-                <h2 align="center">Tasks</h2>
-                <div class="input-group">
-                    <button type="button" id="" class="btn btn-default"
-                        onclick="addTask(-1)"> + </button>
-                    <!--
-                    <button class="input-group-addon" id="plus-addon">+</button>
-                    <input class="form-control" type="text" required
-                    name="task" id="task" placeholder="Add a task"
-                    autocomplete="off" /> -->
-                </div>
-                <br>
+    <div class="tab-content">
+        {% for project in projects %}
+            {% if loop.index0 == 0 %}
+                <div id="{{project.title}}" class="tab-pane fade in active">
+            {% else %}
+                <div id="{{project.title}}" class="tab-pane fade">
+            {% endif %}
 
-                <div class="panel-group">
-                    {% for task in tasks recursive %}
-                        <br>
-                        <div style="position: relative; left: 30px;">
+                <div id="page-content-wrapper">
+                    <div class="container-fluid">
 
-                                <!-- TODO: REPLACE <b> WITH THE TASK DIV -->
-                            <div class="panel panel-default">
-                                <div class="panel-body">
-                                    Task: {{ task.title }} </b> <br>
-                                    <span class="glyphicon glyphicon-cog pull-right"></span>
-                                    <button type="button" id="" class="btn btn-default"
-                                        onclick="addTask({{ task.tid}} )"> + </button>
-                                </div>
+                        <h1 align="center">{{ project.title}}</h1>
+                        <div class="col-lg-6" id="left">
+                            <h2 align="center">Tasks</h2>
+                            <div class="input-group">
+                                <button type="button" id="" class="btn btn-default"
+                                    onclick="addTask(-1)"> + </button>
+                                <!--
+                                <button class="input-group-addon" id="plus-addon">+</button>
+                                <input class="form-control" type="text" required
+                                name="task" id="task" placeholder="Add a task"
+                                autocomplete="off" /> -->
                             </div>
-                            {% if task.children and task.children|length != 0 %}
-                                {{ loop(task.children) }} </ul>
-                            {% endif %}
-                        </div>
+                            <br>
 
-                    {% endfor %}
-                </div>
-                <!--<div class="panel-group">
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <input type="checkbox" name="stuff">
-                            TASK 1
-                            can have this pull up pop up
-                            <span class="glyphicon glyphicon-cog pull-right"></span>
+                            <div class="panel-group">
+                                {% for task in tasks recursive %}
+                                    <br>
+                                    <div style="position: relative; left: 30px;">
+
+                                            <!-- TODO: REPLACE <b> WITH THE TASK DIV -->
+                                        <div class="panel panel-default">
+                                            <div class="panel-body">
+                                                Task: {{ task.title }} </b> <br>
+                                                <span class="glyphicon glyphicon-cog pull-right"></span>
+                                                <button type="button" id="" class="btn btn-default"
+                                                    onclick="addTask({{ task.tid}} )"> + </button>
+                                            </div>
+                                        </div>
+                                        {% if task.children and task.children|length != 0 %}
+                                            {{ loop(task.children) }} </ul>
+                                        {% endif %}
+                                    </div>
+
+                                {% endfor %}
+                            </div>
+                            <!--<div class="panel-group">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <input type="checkbox" name="stuff">
+                                        TASK 1
+                                        can have this pull up pop up
+                                        <span class="glyphicon glyphicon-cog pull-right"></span>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <input type="checkbox" name="stuff">
+                                        TASK 2
+                                        can have this pull up pop up
+                                        <span class="glyphicon glyphicon-cog pull-right"></span>
+                                    </div>
+                                </div>
+                            </div> -->
+                            {# YOU CAN CHANGE THIS PART
+                            {% for task in task_list %}
+                            <div><input type="checkbox" name="something">{{ task }}</div>
+                            {% endfor %}#}
+                        </div>
+                        <div class="col-lg-6" id="right">
+                            <h2 align="center">Completed</h2>
+                            <!-- ADD THE COMPLETED SHIT HERE -->
                         </div>
                     </div>
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <input type="checkbox" name="stuff">
-                            TASK 2
-                            can have this pull up pop up
-                            <span class="glyphicon glyphicon-cog pull-right"></span>
+                </div>
+
+                <div class="modal fade" id="newTaskModal" role="dialog">
+                    <div class="modal-dialog">
+
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">
+                                        x
+                                    </button>
+                                    <h2 class="modal-title"> New Task </h2>
+                                </form>
+                            </div>
+                            <div class="modal-body">
+                                <form id="task_form">
+                                    Title: <br>
+                                    <input class="form-control" type="text" required
+                                    name="title" id="modalInputName" placeholder="New Task" autocomplete="off"/>
+                                    <input id="task_form_submit" type="submit" class="btn btn-default"
+                                    data-dismiss="modal" value="Add Task">
+                                </form>
+                            </div>
                         </div>
                     </div>
-                </div> -->
-                {# YOU CAN CHANGE THIS PART
-                {% for task in task_list %}
-                <div><input type="checkbox" name="something">{{ task }}</div>
-                {% endfor %}#}
-            </div>
-            <div class="col-lg-6" id="right">
-                <h2 align="center">Completed</h2>
-                <!-- ADD THE COMPLETED SHIT HERE -->
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="newTaskModal" role="dialog">
-        <div class="modal-dialog">
-
-            <div class="modal-content">
-                <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">
-                            x
-                        </button>
-                        <h2 class="modal-title"> New Task </h2>
-                    </form>
                 </div>
-                <div class="modal-body">
-                    <form id="task_form">
-                        Title: <br>
-                        <input class="form-control" type="text" required
-                        name="title" id="modalInputName" placeholder="New Task" autocomplete="off"/>
-                        <input id="task_form_submit" type="submit" class="btn btn-default"
-                        data-dismiss="modal" value="Add Task">
-                    </form>
-                </div>
-            </div>
-        </div>
+                </div> <!-- ends tab div-->
+        {% endfor %}
     </div>
 </div>
 
@@ -134,6 +158,7 @@
         global_parent = task;
         $("#newTaskModal").modal();
     }
+
 
     $("#task_form_submit").click(function() {
         var data = $("#task_form").serializeObject();
@@ -156,5 +181,13 @@
             );
         });
     });
+
+    var add_project = function() {
+        var data = $("#new_project").serializeObject();
+
+        api_call("POST", "/api/projects/add", data, function(result) {
+            console.log(result);
+        });
+    }
 </script>
 {% endblock %}

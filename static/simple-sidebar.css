@@ -95,6 +95,12 @@
     background: none;
 }
 
+.vcenter {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+}
+
 @media(min-width:768px) {
     #wrapper {
         padding-left: 250px;
