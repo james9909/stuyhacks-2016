@@ -18,10 +18,9 @@
             </li>
             <ul class="nav nav-pills nav-stacked" id="projects">
                     {% for project in projects %}
-                        {% if loop.indexO == 0 %}
-                            <li><a data-toggle="tab" data-target="#{{project.title}}" class="tab-pane fade in active">{{ project.title}}</a></li>
+                        {% if loop.index0 == 0 %}
+                            <li class="active"><a data-toggle="tab" data-target="#{{project.title}}">{{ project.title}}</a></li>
                         {% else %}
-                            <p>  {{loop.index0 == 0}} </p>
                             <li><a data-toggle="tab" data-target="#{{project.title}}">{{ project.title }}</a></li>
                         {% endif %}
                     {% endfor %}
@@ -31,7 +30,7 @@
                                 <input type="submit" class="input-group-addon
                                 col-md-2" id=""
                                 value="+">
-                                <input type="text" name="title" class="col-md-9" placeholder="Project Name" aria-describedby="basic-addon1">
+                                <input type="text" name="title" class="col-md-9" placeholder="Project Name" aria-describedby="basic-addon1" required>
                             </form>
                         </div>
                     </li>
@@ -72,6 +71,7 @@
                                             <!-- TODO: REPLACE <b> WITH THE TASK DIV -->
                                         <div class="panel panel-default">
                                             <div class="panel-body">
+                                                <input type="checkbox">
                                                 Task: {{ task.title }} </b> <br>
                                                 <span class="glyphicon glyphicon-cog pull-right"></span>
                                                 <button type="button" id="" class="btn btn-default"
