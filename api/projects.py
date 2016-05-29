@@ -21,7 +21,7 @@ def add_project():
 
 @blueprint.route("/remove", methods=["POST"])
 @api_wrapper
-@login_reqired
+@login_required
 def remove_project():
     form = request.form
     pid = form.get("pid")
