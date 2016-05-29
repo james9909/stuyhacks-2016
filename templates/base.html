@@ -10,14 +10,26 @@
         <style>
             body {
                 padding-top: 50px;
+                {% if data["logged_in"] %}
                 background-color: {{ data["b_color"] }};
+                {% else %}
+                background-color: white
+                {% endif %}
             }
             #nav {
                 margin-bottom: 0px;
+                {% if data["logged_in"] %}
                 background: {{ data["nav_color"] }};
+                {% else %}
+                background: #F8F8F8
+                {% endif %}
             }
             #sidebar-wrapper {
+                {% if data["logged_in"] %}
                 background: {{ data["side_color"] }};
+                {% else %}
+                background-color: black
+                {% endif %}
             }
         </style>
     </head>
@@ -40,7 +52,7 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-left">
                     <li>
-                        <a>Welcome {{ data["name"] }}!</a>
+                        <a href="/work">Welcome {{ data["name"] }}!</a>
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">

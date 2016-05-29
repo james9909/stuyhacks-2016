@@ -5,7 +5,8 @@
 {% endblock %}
 {% block body %}
 <div class="col-lg-12">
-    <form action="/settings" method="POST">
+    <div id="message"/></div>
+    <form id="settings_form" onsubmit="settings(); return false">
         Background Color:<br>
         <input type="radio" name="b_color" value="white"> default (white)<br>
         <input type="radio" name="b_color" value="red"> red<br>
@@ -24,4 +25,21 @@
         <input type="submit">
     </form>
 </div>
+{% endblock %}
+{% block scripts %}
+<script>
+var settings = function() {
+    var colors = $("#settings_form").serializeObject();
+    api_call("POST", "/api/users/settings", colors, function(result) {
+        if (result["success"] == 1) {
+            display_message("message", "success", result["message"], function()
+            {
+                location.href = "/settings";
+            });
+        } else {
+            display_message("message", "danger", result["message"]);
+        }
+    })
+}
+</script>
 {% endblock %}

@@ -35,16 +35,6 @@ def register():
     db.session.commit()
     return { "success": 1, "message": "Success!" }
 
-@blueprint.route("/settings", methods=["POST"])
-@api_wrapper
-def settings():
-    form = request.form
-    b_color = form.get("b_color")
-    side_color = form.get("side_color")
-    nav_color = form.get("nav_color")
-    update_colors(b_color, side_color, nav_color)
-    return { "success": 1, "message": "Colors updated!" }
-
 @blueprint.route("/login", methods=["POST"])
 @api_wrapper
 def login():
@@ -62,6 +52,17 @@ def login():
         return { "success": 1, "message": "Success!" }
 
     raise WebException("Invalid credentials.")
+
+@blueprint.route("/settings", methods=["POST"])
+@api_wrapper
+def settings():
+    form = request.form
+    b_color = form.get("b_color")
+    side_color = form.get("side_color")
+    nav_color = form.get("nav_color")
+    print b_color
+    update_colors(b_color, side_color, nav_color)
+    return { "success": 1, "message": "Colors updated!" }
 
 def is_logged_in():
     return "logged_in" in session and session["logged_in"]
@@ -91,6 +92,7 @@ def get_data():
     return data
 
 def update_colors(b_color=None, side_color=None, nav_color=None):
+    print "\n\n\n\n\n\n\n\nCIRCRICRICIRICRCRICRICRICRICRI"
     user = get_user(uid=session.get("uid")).first()
     if user is not None:
         user.b_color = b_color
