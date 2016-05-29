@@ -7,11 +7,9 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
         <script src="{{ url_for('static', filename='main.js')}}"/></script>
         {% endblock %}
-        
         <style>
             body { padding-top: 50px; }
         </style>
-
         <nav id="nav" class="navbar navbar-default navbar-fixed-top">
             <div class="container-fluid">
                 {% if not data["logged_in"] %}
@@ -28,11 +26,10 @@
                     <a href="#menu-toggle" id="menu-toggle"><span class="glyphicon glyphicon-tasks"></span></a>
                     </li>
                 </ul>
-                                <ul class="nav navbar-nav navbar-left">
+                <ul class="nav navbar-nav navbar-left">
                     <li>
                         <a>Welcome {{ data["name"] }}!</a>
                     </li>
-                    
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="/logout">Log out</a></li>
@@ -41,7 +38,6 @@
             </div>
         </nav>
     </head>
-
     <body>
         {% block body %}
         {% endblock %}
