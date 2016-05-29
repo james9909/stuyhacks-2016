@@ -53,3 +53,20 @@
     </div>
 </div>
 {% endblock %}
+
+{% block scripts %}
+<script>
+var register = function() {
+    var data = $("#register_form").serializeObject();
+    api_call("POST", "/api/users/register", data, function(result) {
+        if (result["success"] == 1) {
+            display_message("register_msg", "success", result["message"], function() {
+                location.href = "/login";
+            });
+        } else {
+            display_message("register_msg", "danger", result["message"]);
+        }
+    })
+}
+</script>
+{% endblock %}
