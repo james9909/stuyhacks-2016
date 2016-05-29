@@ -132,7 +132,7 @@ color:#0eb0b7;
                                     <div style="position: relative; left: 30px;">
 
                                             <!-- TODO: REPLACE <b> WITH THE TASK DIV -->
-                                        <div class="panel panel-default">
+                                            <div id="{{task.tid}}" class="panel panel-default">
                                             <div class="panel-body">
                                             <span class="todo-wrap">
                                                 <input
@@ -152,7 +152,7 @@ color:#0eb0b7;
                                                 <div class="edit_item">
                                                     <span class="glyphicon glyphicon-cog pull-right"></span>
                                                 </div>
-                                                <div class="delete-item">
+                                                <div onclick="delete_task({{task.tid}})" class="delete-item">
                                                     <span class="glyphicon
                                                         glyphicon-trash
                                                         pull-right"></span>
@@ -277,6 +277,15 @@ color:#0eb0b7;
                 location.reload();
             }
         });
-    }
+    };
+
+    var delete_task = function(task) {
+        api_call("POST", "/api/tasks/remove", {"tid": task}, function(result) {
+            if (result["success"] == 1) {
+                $("#" + task).slideUp("slow", "swing", function() {});
+            }
+        });
+    };
+
 </script>
 {% endblock %}
