@@ -15,17 +15,14 @@ class User(db.Model):
         self.email = email
         self.password = utils.hash(password)
 
-class Project(db.Model):
-    pid = db.Column(db.Integer, unique=True, primary_key=True)
-    uid = db.Column(db.Integer)
-    title = db.Column(db.String(64))
-    # tasks = db.relationship("Task", backref="project", lazy="dynamic")
-    tasks = []
-
-    def __init__(self, uid, title):
-        self.uid = uid
-        self.title = title
-
+#class Project(db.Model):
+#    pid = db.Column(db.Integer, unique=True, primary_key=True)
+#    #uid
+#    title = db.Column(db.String(20))
+#
+#    def __init__(self, title):
+#        self.title = title
+#
 class Task(db.Model):
     tid = db.Column(db.Integer, unique=True, primary_key=True)
     uid = db.Column(db.Integer)
@@ -33,7 +30,7 @@ class Task(db.Model):
     title = db.Column(db.String(20))
 
     parent = db.Column(db.Integer, db.ForeignKey("task.tid"))
-    project = db.Column(db.Integer)
+#    project = db.Column(db.Integer)
     completed = db.Column(db.Boolean)
     children = db.relationship("Task", uselist=True)
 
@@ -42,7 +39,7 @@ class Task(db.Model):
         self.title = title
         self.priority = priority
         self.parent = parent
-        self.project = project
+#        self.project = project
         self.completed = completed
 
 #    def update_parents(self):
@@ -64,3 +61,14 @@ class Task(db.Model):
                     "children": task.children
                 })
         return children
+
+class Project(db.Model):
+    pid = db.Column(db.Integer, unique=True, primary_key=True)
+    uid = db.Column(db.Integer)
+    title = db.Column(db.String(64))
+    # tasks = db.relationship("Task", backref="project", lazy="dynamic")
+    tasks = []
+
+    def __init__(self, uid, title):
+        self.uid = uid
+        self.title = title
