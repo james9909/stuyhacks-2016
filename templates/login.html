@@ -36,20 +36,3 @@
     </div>
 </div>
 {% endblock %}
-
-{% block scripts %}
-<script>
-var login = function() {
-    var data = $("#login_form").serializeObject();
-    api_call("POST", "/api/users/login", data, function(result) {
-        if (result["success"] == 1) {
-            display_message("login_msg", "success", result["message"], function() {
-                location.href = "/work";
-            });
-        } else {
-            display_message("login_msg", "danger", result["message"]);
-        }
-    })
-}
-</script>
-{% endblock %}
