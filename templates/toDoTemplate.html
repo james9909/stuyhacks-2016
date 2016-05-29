@@ -289,5 +289,13 @@ color:#0eb0b7;
         });
     };
 
+    var delete_project = function(project) {
+        api_call("POST", "/api/projects/remove", {"pid": project}, function(result) {
+            if (result["success"] == 1) {
+                location.reload();
+            }
+        });
+    };
+
 </script>
 {% endblock %}
