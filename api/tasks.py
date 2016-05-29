@@ -86,7 +86,7 @@ def tasks_to_list(tasks):
             "priority"  : task.priority,
             "parent"    : task.parent,
             "completed" : task.completed,
-            "children"  : task.get_children()
+            "children"  : task.children
         }
         print "TASK " + str(taskDict)
         taskList.append(taskDict)

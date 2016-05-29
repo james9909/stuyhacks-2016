@@ -20,8 +20,9 @@ class Task(db.Model):
     uid = db.Column(db.Integer)
     priority = db.Column(db.Integer)
     title = db.Column(db.String(20))
-    parent = db.Column(db.Integer)
+    parent = db.Column(db.Integer, db.ForeignKey("task.tid"))
     completed = db.Column(db.Boolean)
+    children = db.relationship("Task", uselist=True)
 
     def __init__(self, uid, title, priority = 0, parent = -1, completed = False):
         self.uid = uid
@@ -45,7 +46,8 @@ class Task(db.Model):
                     "priority": task.priority,
                     "title": task.title,
                     "parent": task.parent,
-                    "completed": task.completed
+                    "completed": task.completed,
+                    "children": task.children
                 })
         return children
 

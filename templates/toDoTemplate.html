@@ -61,7 +61,7 @@
                                     onclick="addTask({{ task['tid']}} )"> + </button>
                             </div>
                         </div>
-                        {% if task["children"]|length != 0 %}
+                        {% if task["children"] and task["children"]|length != 0 %}
                             {{ loop(task["children"]) }} </ul>
                         {% endif %}
 
