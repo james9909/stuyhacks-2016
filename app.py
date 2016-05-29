@@ -48,7 +48,7 @@ def login():
 @api.decorators.redirect_if_not_logged_in("/")
 def work():
     data = api.users.get_data()
-    taskList = api.tasks.tasks_to_list(api.tasks.get_all_tasks())
+    taskList = api.tasks.tasks_to_list(api.tasks.get_task(parent=-1).all())
     print str(taskList)
     return render_template("toDoTemplate.html", data = data, tasks = taskList)
 

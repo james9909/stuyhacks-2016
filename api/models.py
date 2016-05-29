@@ -37,7 +37,8 @@ class Task(db.Model):
 
     def get_children(self):
         tasks = Task.query.filter_by(parent=self.tid).all()
-        if query is not None:
+        children = []
+        if tasks is not None:
             for task in tasks:
                 children.append({
                     "tid": task.tid,
