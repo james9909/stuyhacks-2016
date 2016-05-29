@@ -139,7 +139,7 @@ color:#0eb0b7;
                                                     {% endif %}
                                                 >
 
-                                                <label for="1" class="todo"> 
+                                                <label for="1" class="todo">
                                                     Task: {{ task.title }} </b> <br>
                                                 </label>
                                                 <span class="delete-item">
@@ -241,9 +241,9 @@ color:#0eb0b7;
         function(){console.log("bad")} );
         if (box.checked) {
             console.log("CHECK");
-        
+
             display_message("taskMessage" + task,
-             "success", "Yay!" 
+             "success", "Yay!"
                     ,function(){});
         }
     }
@@ -254,20 +254,11 @@ color:#0eb0b7;
         data["parent"] = global_parent;
         data["pid"] = global_project;
 
-        api_call("POST","/api/tasks/add", data,
-        function() {
-            console.log(
-                "Worked! \n" +
-                "Sent: \n" +
-                JSON.stringify(data)
-            );
-        },
-        function() {
-            console.log(
-                "Failed :( \n" +
-                "Sent \n" +
-                JSON.stringify(data)
-            );
+        api_call("POST","/api/tasks/add", data, function(result) {
+            if (result["success"] == 1) {
+                location.reload();
+            }
+        }, function() {
         });
     });
 
