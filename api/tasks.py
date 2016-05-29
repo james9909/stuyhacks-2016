@@ -85,5 +85,6 @@ def tasks_to_list(tasks):
             "completed" : task.completed,
             "children"  : task.children
         }
+        print "TASK " + str(taskDict)
         taskList.append(taskDict)
     return taskList

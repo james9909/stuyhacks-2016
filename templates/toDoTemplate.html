@@ -1,13 +1,3 @@
-<!--
-    Yall better get ready
-    To dive nose deep in some Spaghetti
-    Cause our program is front end heavy
-    and it's still not ready
-
-    and that's making me upsetti :/
--->
-
-
 {% extends "base.html" %}
 {% block head %}
 <title>ToDo</title>
@@ -78,7 +68,7 @@
                             <!-- TODO: REPLACE <b> WITH THE TASK DIV -->
                         <div class="panel panel-default"> 
                             <div class="panel-body">
-                                Task: {{ task["name"] }} </b> <br>
+                                Task: {{ task["title"] }} </b> <br>
                                 <span class="glyphicon glyphicon-cog pull-right"></span>
                                 <span class="input-group-addon" id="plus-addon">+</span>
                             </div>
@@ -132,9 +122,9 @@
                 </div>
                 <div class="modal-body">
                     <form id="task_form">
-                        Name: <br>
+                        Title: <br>
                         <input class="form-control" type="text" required
-                        name="name" id="modalInputName" placeholder="New Task" autocomplete="off"/>
+                        name="title" id="modalInputName" placeholder="New Task" autocomplete="off"/>
                         <input id="task_form_submit" type="submit" class="btn btn-default"
                         data-dismiss="modal" value="Add Task">
                     </form>    
