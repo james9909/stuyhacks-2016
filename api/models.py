@@ -17,10 +17,12 @@ class User(db.Model):
 
 class Project(db.Model):
     pid = db.Column(db.Integer, unique=True, primary_key=True)
+    uid = db.Column(db.Integer)
     title = db.Column(db.String(64))
     tasks = db.relationship("Task", lazy="dynamic")
 
-    def __init__(self, title):
+    def __init__(self, uid, title):
+        self.uid = uid
         self.title = title
 
 class Task(db.Model):

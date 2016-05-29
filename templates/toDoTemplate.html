@@ -25,7 +25,7 @@
                     <li><a href="#">Project 0</a></li>
                     <li>
                         <div class="input-group">
-                            <form id="new_project" onsubmit="addProject(-1)">
+                            <form id="new_project" onsubmit="add_project(); return false;">
                                 <input type="submit" class="input-group-addon
                                 col-md-2" id=""
                                 value="+">
@@ -166,5 +166,13 @@
             );
         });
     });
+
+    var add_project = function() {
+        var data = $("#new_project").serializeObject();
+
+        api_call("POST", "/api/projects/add", data, function(result) {
+            console.log(result);
+        });
+    }
 </script>
 {% endblock %}
