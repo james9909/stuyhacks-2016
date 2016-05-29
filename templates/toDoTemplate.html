@@ -21,6 +21,9 @@
                 <a href="#">Your Lists</a>
             </li>
             <ul class="nav nav-pills nav-stacked" id="projects">
+                    {% for project in projects %}
+                    <p>{{ project.title }}</p>
+                    {% endfor %}
                     <li><a href="#">Project 0</a></li>
                     <li><a href="#">Project 0</a></li>
                     <li>
@@ -29,7 +32,7 @@
                                 <input type="submit" class="input-group-addon
                                 col-md-2" id=""
                                 value="+">
-                                <input type="text" class="col-md-9" placeholder="Project Name" aria-describedby="basic-addon1">
+                                <input type="text" name="title" class="col-md-9" placeholder="Project Name" aria-describedby="basic-addon1">
                             </form>
                         </div>
                     </li>

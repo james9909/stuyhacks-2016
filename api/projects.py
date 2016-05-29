@@ -17,3 +17,12 @@ def add_project():
     db.session.commit()
 
     return { "success": 1, "message": "Project added." }
+
+def get_project(pid=None, uid=None):
+    match = {}
+    if pid is not None:
+        match.update({"pid": pid})
+    if uid is not None:
+        match.update({"uid": uid})
+
+    return Project.query.filter_by(**match)
