@@ -1,7 +1,7 @@
 from flask import Blueprint, request, session
 
 from decorators import api_wrapper, login_required, WebException
-from models import db, Project
+from models import db, Project, Task
 
 blueprint = Blueprint("projects", __name__)
 
@@ -30,6 +30,7 @@ def remove_project():
     if project is None:
         raise WebException("Project does not exist.")
 
+    Task.query.filter_by(project=pid).delete()
     result.delete()
     db.session.commit()
     return { "success": 1, "message": "Project deleted." }
