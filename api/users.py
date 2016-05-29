@@ -66,7 +66,7 @@ def get_user(uid=None, name=None, email=None):
 def get_data():
     data = {}
     logged_in = "logged_in" in session and session["logged_in"]
-    user = get_user(session.get("uid")).first()
+    user = get_user(uid=session.get("uid")).first()
     if user is not None:
         data["uid"] = user.uid
         data["name"] = user.name
