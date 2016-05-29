@@ -250,7 +250,9 @@ color:#0eb0b7;
 
     var checkOffTask = function(task) {
         var box = document.getElementById("taskBox" + task);
-        api_call("POST","/api/tasks/update", {"completed" : box.checked}, function() { }, function(){ });
+        api_call("POST","/api/tasks/update", {"completed" : box.checked}, function() {
+            display_message("taskMessage"+task, "success", "yay", function() { });
+        }, function(){ });
     }
 
 
