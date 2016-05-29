@@ -5,19 +5,22 @@
 {% endblock %}
 {% block body %}
 <div class="col-lg-12">
-    <form action="/settings">
+    <form action="/settings" method="POST">
         Background Color:<br>
+        <input type="radio" name="b_color" value="white"> default (white)<br>
         <input type="radio" name="b_color" value="red"> red<br>
         <input type="radio" name="b_color" value="blue"> blue<br>
         <input type="radio" name="b_color" value="green"> green<br>
         Side Nav Color:<br>
-        <input type="radio" name="b_color" value="red"> red<br>
-        <input type="radio" name="b_color" value="blue"> blue<br>
-        <input type="radio" name="b_color" value="green"> green<br>
+        <input type="radio" name="side_color" value="black"> default (black)<br>
+        <input type="radio" name="side_color" value="red"> red<br>
+        <input type="radio" name="side_color" value="blue"> blue<br>
+        <input type="radio" name="side_color" value="green"> green<br>
         Top Nav Color:<br>
-        <input type="radio" name="b_color" value="red"> red<br>
-        <input type="radio" name="b_color" value="blue"> blue<br>
-        <input type="radio" name="b_color" value="green"> green<br>
+        <input type="radio" name="nav_color" value="#F8F8F8"> default (light gray)<br>
+        <input type="radio" name="nav_color" value="red"> red<br>
+        <input type="radio" name="nav_color" value="blue"> blue<br>
+        <input type="radio" name="nav_color" value="green"> green<br>
         <input type="submit">
     </form>
 </div>

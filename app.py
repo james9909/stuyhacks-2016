@@ -53,7 +53,8 @@ def work():
     return render_template("toDoTemplate.html", title= "wtf",data=data, 
         tasks = taskList)
 
-@app.route("/settings")
+@app.route("/settings", methods=["POST","GET"])
+@api.decorators.redirect_if_not_logged_in("/")
 def settings():
     data = api.users.get_data()
     return render_template("settings.html", data=data)

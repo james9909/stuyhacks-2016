@@ -43,6 +43,7 @@ def settings():
     side_color = form.get("side_color")
     nav_color = form.get("nav_color")
     update_colors(b_color, side_color, nav_color)
+    return { "success": 1, "message": "Colors updated!" }
 
 @blueprint.route("/login", methods=["POST"])
 @api_wrapper
@@ -79,19 +80,20 @@ def get_user(uid=None, name=None, email=None):
 def get_data():
     data = {}
     logged_in = "logged_in" in session and session["logged_in"]
-    user = get_user(session.get("uid")).first()
+    user = get_user(uid=session.get("uid")).first()
     if user is not None:
         data["uid"] = user.uid
         data["name"] = user.name
         data["b_color"] = user.b_color
         data["side_color"] = user.side_color
-        data["nav_color"] = nav_color
+        data["nav_color"] = user.nav_color
     data["logged_in"] = logged_in
     return data
 
-def update_colors(b_color, side_color, nav_color):
-    user = get_user(session.get("uid")).first()
+def update_colors(b_color=None, side_color=None, nav_color=None):
+    user = get_user(uid=session.get("uid")).first()
     if user is not None:
         user.b_color = b_color
         user.side_color = side_color
         user.nav_color = nav_color
+        db.session.commit()
