@@ -79,7 +79,7 @@
                                                 type="checkbox"
                                                 id="taskBox{{task.tid}}"
                                                     onclick="checkOffTask({{task.tid}});"
-                                                {% if task.checked %}
+                                                {% if task.completed %}
                                                     checked
                                                 {% endif %}
                                                 >
@@ -175,7 +175,7 @@
     var checkOffTask = function(task) {
         var box = document.getElementById("taskBox" + task);
         api_call("POST","/api/tasks/update",
-        {"checked" : box.checked}, function(){console.log("gud")},
+        {"completed" : box.checked}, function(){console.log("gud")},
         function(){console.log("bad")} );
         if (box.checked) {
             console.log("CHECK");
