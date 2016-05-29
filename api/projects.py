@@ -7,6 +7,7 @@ blueprint = Blueprint("projects", __name__)
 
 @blueprint.route("/add", methods=["POST"])
 @api_wrapper
+@login_required
 def add_project():
     form = request.form
     title = form.get("title")
@@ -17,6 +18,21 @@ def add_project():
     db.session.commit()
 
     return { "success": 1, "message": "Project added." }
+
+@blueprint.route("/remove", methods=["POST"])
+@api_wrapper
+@login_reqired
+def remove_project():
+    form = request.form
+    pid = form.get("pid")
+    result = get_project(pid=pid)
+    project = result.first()
+    if project is None:
+        raise WebException("Project does not exist.")
+
+    result.delete()
+    db.session.commit()
+    return { "success": 1, "message": "Project deleted." }
 
 def get_project(pid=None, uid=None):
     match = {}
