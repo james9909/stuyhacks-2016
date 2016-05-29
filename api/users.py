@@ -42,7 +42,7 @@ def settings():
     b_color = form.get("b_color")
     side_color = form.get("side_color")
     nav_color = form.get("nav_color")
-    
+    update_colors(b_color, side_color, nav_color)
 
 @blueprint.route("/login", methods=["POST"])
 @api_wrapper
@@ -83,5 +83,15 @@ def get_data():
     if user is not None:
         data["uid"] = user.uid
         data["name"] = user.name
+        data["b_color"] = user.b_color
+        data["side_color"] = user.side_color
+        data["nav_color"] = nav_color
     data["logged_in"] = logged_in
     return data
+
+def update_colors(b_color, side_color, nav_color):
+    user = get_user(session.get("uid")).first()
+    if user is not None:
+        user.b_color = b_color
+        user.side_color = side_color
+        user.nav_color = nav_color

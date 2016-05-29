@@ -6,10 +6,22 @@
         <script src="https://code.jquery.com/jquery-2.1.4.min.js" integrity="sha384-R4/ztc4ZlRqWjqIuvf6RX5yb/v90qNGx6fS48N0tRxiGkqveZETq72KgDVJCp2TC" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
         <script src="{{ url_for('static', filename='main.js')}}"/></script>
+        <style>
+            body {
+                background-color: {{ data["b_color"] }};
+            }
+            #top_nav {
+                margin-bottom: 0px;
+                background: {{ data["nav_color"] }};
+            }
+            #sidebar-wrapper {
+                background: {{ data["side_color"] }};
+            }
+        </style>
         {% endblock %}
     </head>
     <body>
-        <nav id="nav" class="navbar navbar-default">
+        <nav class="navbar navbar-default" id="top_nav">
             <div class="container-fluid">
                 {% if not data["logged_in"] %}
                 <div class="navbar-header">
