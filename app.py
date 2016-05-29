@@ -21,6 +21,7 @@ with app.app_context():
     db.init_app(app)
     db.create_all()
 
+app.register_blueprint(api.projects.blueprint, url_prefix="/api/projects")
 app.register_blueprint(api.tasks.blueprint, url_prefix="/api/tasks")
 app.register_blueprint(api.users.blueprint, url_prefix="/api/users")
 
@@ -48,7 +49,7 @@ def login():
 @api.decorators.redirect_if_not_logged_in("/")
 def work():
     data = api.users.get_data()
-    taskList = api.tasks.tasks_to_list(api.tasks.get_task(parent=-1).all())
+    taskList = api.tasks.get_task(parent=-1).all()
     print str(taskList)
     return render_template("toDoTemplate.html", title= "wtf",data=data, 
         tasks = taskList)

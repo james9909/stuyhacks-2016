@@ -8,6 +8,7 @@
         <script src="{{ url_for('static', filename='main.js')}}"/></script>
         <style>
             body {
+                padding-top: 50px;
                 background-color: {{ data["b_color"] }};
             }
             #top_nav {
@@ -49,6 +50,9 @@
                 {% endif %}
             </div>
         </nav>
+    </head>
+
+    <body>
         {% block body %}
         {% endblock %}
     </body>

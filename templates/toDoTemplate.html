@@ -46,20 +46,21 @@
                 <div class="panel-group">
                     {% for task in tasks recursive %}
                         <br>
-                        <!--<div style="position: relative; left: 30px;"> -->
+                        <div style="position: relative; left: 30px;">
 
-                            <!-- TODO: REPLACE <b> WITH THE TASK DIV -->
-                        <div class="panel panel-default">
-                            <div class="panel-body">
-                                Task: {{ task["title"] }} </b> <br>
-                                <span class="glyphicon glyphicon-cog pull-right"></span>
-                                <button type="button" id="" class="btn btn-default"
-                                    onclick="addTask({{ task['tid']}} )"> + </button>
+                                <!-- TODO: REPLACE <b> WITH THE TASK DIV -->
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    Task: {{ task.title }} </b> <br>
+                                    <span class="glyphicon glyphicon-cog pull-right"></span>
+                                    <button type="button" id="" class="btn btn-default"
+                                        onclick="addTask({{ task.tid}} )"> + </button>
+                                </div>
                             </div>
+                            {% if task.children and task.children|length != 0 %}
+                                {{ loop(task.children) }} </ul>
+                            {% endif %}
                         </div>
-                        {% if task["children"] and task["children"]|length != 0 %}
-                            {{ loop(task["children"]) }} </ul>
-                        {% endif %}
 
                     {% endfor %}
                 </div>
