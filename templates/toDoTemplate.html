@@ -70,7 +70,8 @@
                             <div class="panel-body">
                                 Task: {{ task["title"] }} </b> <br>
                                 <span class="glyphicon glyphicon-cog pull-right"></span>
-                                <span class="input-group-addon" id="plus-addon">+</span>
+                                <button type="button" id="" class="btn btn-default" 
+                                    onclick="addTask({{ task['tid']}} )"> + </button>
                             </div>
                         </div>
                         {% if task["children"]|length != 0 %}
@@ -138,17 +139,23 @@
 
 <!-- Menu Toggle Script -->
 <script>
+    var global_parent = -1; // SCOUT REPORTS THE JANK LEVEL: IT'S OVER9000!
+
     $("#menu-toggle").click(function (e) {
         e.preventDefault();
         $("#wrapper").toggleClass("toggled");
     });
 
     var addTask = function(task) {
+        global_parent = task; 
         $("#newTaskModal").modal();
     }
+
     $("#task_form_submit").click(function() {
         var data = $("#task_form").serializeObject();
         console.log("aylmao");
+        data["parent"] = global_parent;
+
         api_call("POST","/api/tasks/add", data,
         function() {
             console.log(

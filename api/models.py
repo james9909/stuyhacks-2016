@@ -22,7 +22,6 @@ class Task(db.Model):
     title = db.Column(db.String(20))
     parent = db.Column(db.Integer)
     completed = db.Column(db.Boolean)
-    children = []
 
     def __init__(self, uid, title, priority = 0, parent = -1, completed = False):
         self.uid = uid
@@ -31,13 +30,12 @@ class Task(db.Model):
         self.parent = parent
         self.completed = completed
 
-    def update_parents(self):
-        parent = Task.query.filter_by(name=self.parent).first()
-        if ((parent != None) and (not self.parent in task.children)):
-            task.children.append(self.parent)
+#    def update_parents(self):
+#        parent = Task.query.filter_by(name=self.parent).first()
+#        if ((parent != None) and (not self.parent in task.children)):
+#            task.children.append(self.parent)
 
     def get_children(self):
-        children = []
         tasks = Task.query.filter_by(parent=self.tid).all()
         if query is not None:
             for task in tasks:

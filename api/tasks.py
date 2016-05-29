@@ -81,8 +81,10 @@ def tasks_to_list(tasks):
 #        taskList.append(task.__dict__)
 #    return taskList
         taskDict = {
-            "title"      : task.title,
+            "tid"       : task.tid,
+            "title"     : task.title,
             "priority"  : task.priority,
+            "parent"    : task.parent,
             "completed" : task.completed,
             "children"  : task.children
         }
