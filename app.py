@@ -21,6 +21,7 @@ with app.app_context():
     db.init_app(app)
     db.create_all()
 
+app.register_blueprint(api.projects.blueprint, url_prefix="/api/projects")
 app.register_blueprint(api.tasks.blueprint, url_prefix="/api/tasks")
 app.register_blueprint(api.users.blueprint, url_prefix="/api/users")
 
