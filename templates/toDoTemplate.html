@@ -51,7 +51,7 @@
                     {% for task in tasks recursive %}
                         <br>
                         <div style="position: relative; left: 30px;">
-    
+
                                 <!-- TODO: REPLACE <b> WITH THE TASK DIV -->
                             <div class="panel panel-default">
                                 <div class="panel-body">
@@ -65,7 +65,7 @@
                                 {{ loop(task.children) }} </ul>
                             {% endif %}
                         </div>
-    
+
                     {% endfor %}
                 </div>
                 <!--<div class="panel-group">
