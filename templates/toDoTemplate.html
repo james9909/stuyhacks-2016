@@ -26,17 +26,17 @@
            -moz-box-shadow:none;
                 box-shadow:none;
     }
-.delete-item{
-display:block;
-position:absolute;
-height:36px;
-width:36px;
-line-height:36px;
-right:0;
-top:0;
-text-align:center;
-color:#d8d8d8;
-opacity:0;
+.delete-item {
+    display:block;
+    position:absolute;
+    height:36px;
+    width:36px;
+    line-height:36px;
+    right:0;
+    top:0;
+    text-align:center;
+    color:#d8d8d8;
+    opacity:0;
 }
 .todo-wrap:hover .delete-item{
 opacity:1;
@@ -147,11 +147,16 @@ color:#0eb0b7;
                                                 <label for="1" class="todo">
                                                     Task: {{ task.title }} </b> <br>
                                                 </label>
-                                                <span class="delete-item">
-                                                    <span class="glyphicon glyphicon-cog pull-right"></span>
-                                                </span>
                                                 <button type="button" class="btn btn-default"
                                                 onclick="addTask({{ task.tid}}, {{ project.pid }})"> + </button>
+                                                <div class="edit_item">
+                                                    <span class="glyphicon glyphicon-cog pull-right"></span>
+                                                </div>
+                                                <div class="delete-item">
+                                                    <span class="glyphicon
+                                                        glyphicon-trash
+                                                        pull-right"></span>
+                                                </div>
                                             </span>
 
                                             </div>
