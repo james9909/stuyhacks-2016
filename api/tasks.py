@@ -75,20 +75,3 @@ def get_task(tid=None, parent=None, priority=None, completed=False):
 
 def get_all_tasks():
     return Task.query.all()
-
-#def tasks_to_list(tasks):
-#    taskList = []
-#    for task in tasks:
-#        taskList.append(task.__dict__)
-#    return taskList
-#        taskDict = {
-#            "tid"       : task.tid,
-#            "title"     : task.title,
-#            "priority"  : task.priority,
-#            "parent"    : task.parent,
-#            "completed" : task.completed,
-#            "children"  : task.children
-#        }
-#        print "TASK " + str(taskDict)
-#        taskList.append(taskDict)
-#    return taskList
