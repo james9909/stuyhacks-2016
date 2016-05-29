@@ -7,7 +7,7 @@ var api_call = function(method, url, data, success_callback, fail_callback) {
     }).done(function(result) {
         success_callback(result);
     }).error(function(jqXHR) {
-        fail_callback(JqXHRresult);
+        fail_callback(JqXHR);
     });
 }
 

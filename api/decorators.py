@@ -1,4 +1,4 @@
-from flask import make_response
+from flask import make_response, redirect
 from functools import wraps
 
 import json
@@ -35,3 +35,13 @@ def login_required(f):
             return { "success": 0, "message": "You must be logged in to do this." }
         return f(*args, **kwargs)
     return wrapper
+
+def redirect_if_not_logged_in(route):
+    def decorator(f):
+        @wraps(f)
+        def wrapper(*args, **kwargs):
+            if not users.is_logged_in():
+                return redirect(route)
+            return f(*args, **kwargs)
+        return wrapper
+    return decorator

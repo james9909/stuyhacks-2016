@@ -26,31 +26,44 @@ class Task(db.Model):
     uid = db.Column(db.Integer)
     priority = db.Column(db.Integer)
     title = db.Column(db.String(20))
-    parent = db.Column(db.Integer)
+    parent = db.Column(db.Integer, db.ForeignKey("task.tid"))
     completed = db.Column(db.Boolean)
-    children = []
+    children = db.relationship("Task", uselist=True)
 
-    def __init__(self, title, priority = 0, parent = -1, completed = False):
+    def __init__(self, uid, title, priority = 0, parent = -1, completed = False):
+        self.uid = uid
         self.title = title
         self.priority = priority
         self.parent = parent
         self.completed = completed
 
-    def update_parents(self):
-        parent = Task.query.filter_by(name=self.parent).first() 
-        if ((parent != None) and (not self.parent in task.children)):
-            task.children.append(self.parent)
+#    def update_parents(self):
+#        parent = Task.query.filter_by(name=self.parent).first()
+#        if ((parent != None) and (not self.parent in task.children)):
+#            task.children.append(self.parent)
 
     def get_children(self):
-        children = []
         tasks = Task.query.filter_by(parent=self.tid).all()
-        if query is not None:
+        children = []
+        if tasks is not None:
             for task in tasks:
                 children.append({
                     "tid": task.tid,
                     "priority": task.priority,
                     "title": task.title,
                     "parent": task.parent,
-                    "completed": task.completed
+                    "completed": task.completed,
+                    "children": task.children
                 })
         return children
+
+class Project(db.Model):
+    pid = db.Column(db.Integer, unique=True, primary_key=True)
+    uid = db.Column(db.Integer)
+    title = db.Column(db.String(64))
+    # tasks = db.relationship("Task", backref="project", lazy="dynamic")
+    tasks = []
+
+    def __init__(self, uid, title):
+        self.uid = uid
+        self.title = title

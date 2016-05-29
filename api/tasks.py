@@ -1,4 +1,4 @@
-from flask import current_app as app, Blueprint, request
+from flask import current_app as app, Blueprint, request, session
 
 from decorators import api_wrapper, login_required, WebException
 from models import db, Task
@@ -13,7 +13,8 @@ def add_task():
     title = form.get("title")
     parent = form.get("parent", -1)
     priority = form.get("priority", 0)
-    task = Task(title, priority=priority, parent=parent)
+    uid = session.get("uid")
+    task = Task(uid, title, priority=priority, parent=parent)
     with app.app_context():
         db.session.add(task)
         db.session.commit()
@@ -80,10 +81,13 @@ def tasks_to_list(tasks):
 #        taskList.append(task.__dict__)
 #    return taskList
         taskDict = {
-            "title"      : task.title,
+            "tid"       : task.tid,
+            "title"     : task.title,
             "priority"  : task.priority,
+            "parent"    : task.parent,
             "completed" : task.completed,
             "children"  : task.children
         }
+        print "TASK " + str(taskDict)
         taskList.append(taskDict)
     return taskList
