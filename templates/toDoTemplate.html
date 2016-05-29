@@ -104,7 +104,7 @@ color:#0eb0b7;
     <div class="tab-content">
         {% for project in projects %}
             {% if loop.index0 == 0 %}
-                <div id="{{project.title}}" class="tab-pane fade in active">
+            <div id="{{project.title}}" class="tab-pane fade in active">
             {% else %}
                 <div id="{{project.title}}" class="tab-pane fade">
             {% endif %}
@@ -112,7 +112,9 @@ color:#0eb0b7;
                 <div id="page-content-wrapper">
                     <div class="container-fluid">
 
-                        <h1 align="center">{{ project.title}}</h1>
+                        <h1 align="center">{{ project.title}}
+                            <span class="glyphicon glyphicon-trash"/>
+                        </h1>
                         <div class="col-lg-6" id="left">
                             <h2 align="center">Tasks</h2>
                             <div class="input-group">
