@@ -282,7 +282,7 @@ color:#0eb0b7;
     var delete_task = function(task) {
         api_call("POST", "/api/tasks/remove", {"tid": task}, function(result) {
             if (result["success"] == 1) {
-                $("#" + task).slideUp("slow", "swing", function() {});
+                location.reload();
             }
         });
     };
